@@ -50,6 +50,42 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return lop;
         }
+        [HttpGet]
+        [Route("layLopTheoRole")]
+        public object LayLopTheoRole(string ma = null)
+        {
+            object lop = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                    new SqlParameter("@ma", ma),
+            };
+            dt = DBConnect.ExecuteQuery("SP_GET_CLASS_BY_ROLE", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                lop = dt;
+                return lop;
+            }
+            return lop;
+        }
+        [HttpGet]
+        [Route("layDanhSachHVTheoLop")]
+        public object LayDanhSachHVTheoLop(string maLop = null)
+        {
+            object lop = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                    new SqlParameter("@maLop", maLop),
+            };
+            dt = DBConnect.ExecuteQuery("SP_GET_STUDENT_LIST_BY_CLASS", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                lop = dt;
+                return lop;
+            }
+            return lop;
+        }
 
     }
 }
