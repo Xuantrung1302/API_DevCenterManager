@@ -12,10 +12,10 @@ namespace API_Students_Manager.Models
         public string MaHV { get; set; }
         public string MaLop { get; set; }
         public string MaPhieu { get; set; }
-        public int DiemNghe { get; set; }
-        public int DiemNoi { get; set; }
-        public int DiemDoc { get; set; }
-        public int DiemViet { get; set; }
+        public int DiemLyThuyet { get; set; }
+        public int DiemThucHanh { get; set; }
+        public int DiemDuAn { get; set; }
+        public int DiemCuoiKy { get; set; }
 
         // Foreign keys
         public HocVien HocVien { get; set; }
