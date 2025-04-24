@@ -16,7 +16,7 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
 
         [HttpGet]
-        [Route("danhSachThongBao")]
+        [Route("danhSachThongBao1")]
         public object DanhSachThongBao()
         {
             object dstb = new List<object>();
