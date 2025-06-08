@@ -98,9 +98,9 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("taoIdTuDong")]
-        public string TaoIDTuDong(string ngay, string ma)
+        public string TaoIDTuDong(string ma)
         {
-            return DBConnect.AutoGenerateId(ngay, ma);
+            return DBConnect.AutoGenerateId(ma);
         }
 
     }
