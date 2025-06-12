@@ -88,9 +88,9 @@
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\Notice1Controller.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
+    <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -105,6 +105,7 @@
     <Compile Include="Models\GiangVien.cs" />
     <Compile Include="Models\HocVien.cs" />
     <Compile Include="Models\KhoaHoc.cs" />
+    <Compile Include="Models\KyHoc.cs" />
     <Compile Include="Models\LoaiHV.cs" />
     <Compile Include="Models\LoaiNV.cs" />
     <Compile Include="Models\LopHoc.cs" />

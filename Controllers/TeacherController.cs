@@ -1,14 +1,13 @@
 ﻿using API_Students_Manager.Models;
 using API_Technology_Students_Manages.DataAccess;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Newtonsoft.Json;
 
 namespace API_Technology_Students_Manages.Controllers
 {
@@ -17,27 +16,26 @@ namespace API_Technology_Students_Manages.Controllers
     {
         DBConnect DBConnect = new DBConnect();
 
-        //API Teacher
         [HttpGet]
         [Route("thongTinGiangVien")]
-        public object DanhSachGiangVien(string maGV = null, string tenGV = null, string gioiTinh = null)
+        public object DanhSachGiangVien(string teacherID = null, string fullName = null, string gender = null)
         {
-            object giangVien = new List<object>();
+            object teachers = new List<object>();
             DataTable dt = new DataTable();
-            SqlParameter[] selectparams = {
-                    new SqlParameter("@MaGV", maGV),
-                    new SqlParameter("@TenGV", tenGV),
-                    new SqlParameter("@GioiTinhGV", gioiTinh),
+            SqlParameter[] selectParams = {
+                new SqlParameter("@TeacherID", teacherID),
+                new SqlParameter("@FullName", fullName),
+                new SqlParameter("@Gender", gender)
             };
 
-            dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_TEACHER", selectparams);
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_TEACHER", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
-                giangVien = dt;
-                return giangVien;
+                teachers = dt;
+                return teachers;
             }
-            return giangVien;
+            return teachers;
         }
 
         [HttpPost]
@@ -45,14 +43,13 @@ namespace API_Technology_Students_Manages.Controllers
         public bool ThemThongTinGiangVien([FromBody] GiangVien data)
         {
             bool result = false;
+            string json = JsonConvert.SerializeObject(data);
 
-            string gv = JsonConvert.SerializeObject(data);
-
-            SqlParameter[] insertparam = {
-                    new SqlParameter("@json", gv)
+            SqlParameter[] insertParam = {
+                new SqlParameter("@json", json)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER", insertparam);
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER", insertParam);
             return result;
         }
 
@@ -61,14 +58,13 @@ namespace API_Technology_Students_Manages.Controllers
         public bool DoiThongTinGiangVien([FromBody] GiangVien data)
         {
             bool result = false;
+            string json = JsonConvert.SerializeObject(data);
 
-            string gv = JsonConvert.SerializeObject(data);
-
-            SqlParameter[] updateparam = {
-                    new SqlParameter("@json", gv)
+            SqlParameter[] updateParam = {
+                new SqlParameter("@json", json)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_TEACHER", updateparam);
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_TEACHER", updateParam);
             return result;
         }
     }

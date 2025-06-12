@@ -9,11 +9,11 @@ namespace API_Students_Manager.Models
     public class ChiTietTrungTam
     {
         [Key]
-        public string TenTT { get; set; }
-        public string DiaChiTT { get; set; }
-        public string SdtTT { get; set; }
+        public string CenterName { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
         public string Website { get; set; }
-        public string EmailTT { get; set; }
+        public string Email { get; set; }
     }
 
 }

@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using API_Students_Manager.Models;
 using API_Technology_Students_Manages.DataAccess;
-using System.Drawing.Printing;
 
 namespace API_Technology_Students_Manages.Controllers
 {
@@ -18,91 +16,87 @@ namespace API_Technology_Students_Manages.Controllers
     {
         DBConnect DBConnect = new DBConnect();
 
-        //API Employee
         [HttpGet]
         [Route("thongTinHocVien")]
-        public object DanhSachHocVien(string MaHV = null, string TenHV = null, string gioiTinh = null, DateTime? Dstart = null, DateTime? Dend = null)
+        public object DanhSachHocVien(string studentID = null, string fullName = null, string gender = null, DateTime? enrollmentDateStart = null, DateTime? enrollmentDateEnd = null)
         {
-            object nhanVien = new List<object>();
+            object students = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] searchParams = {
-                new SqlParameter("@MaHV",MaHV),
-                new SqlParameter("@TenHV",TenHV),
-                new SqlParameter("@NgayTiepNhanStart",Dstart),
-                new SqlParameter("@NgayTiepNhanEnd",Dend),
-                new SqlParameter("@GioiTinhHV",gioiTinh)
+                new SqlParameter("@StudentID", studentID),
+                new SqlParameter("@FullName", fullName),
+                new SqlParameter("@EnrollmentDateStart", enrollmentDateStart),
+                new SqlParameter("@EnrollmentDateEnd", enrollmentDateEnd),
+                new SqlParameter("@Gender", gender)
             };
             dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_STUDENTS", searchParams);
 
             if (dt?.Rows?.Count > 0)
             {
-                nhanVien = dt;
-                return nhanVien;
+                students = dt;
+                return students;
             }
-            return nhanVien;
+            return students;
         }
+
         [HttpPost]
         [Route("themThongTinHocVien")]
         public bool ThemThongTinHocVien([FromBody] HocVien data)
         {
             bool result = false;
 
-            SqlParameter[] insertparams = {
-                    new SqlParameter("@MaHV", data.MaHV),
-                    new SqlParameter("@TenHV", data.TenHV),
-                    new SqlParameter("@NgaySinh", data.NgaySinh),
-                    new SqlParameter("@GioiTinhHV", data.GioiTinhHV),
-                    new SqlParameter("@DiaChi", data.DiaChi),
-                    new SqlParameter("@SdtHV", data.SdtHV),
-                    new SqlParameter("@EmailHV", data.EmailHV),
-                    new SqlParameter("@MaLoaiHV", data.MaLoaiHV),
-                    new SqlParameter("@NgayTiepNhan", data.NgayTiepNhan),
-                    new SqlParameter("@TenDangNhap", data.TenDangNhap),
-                    new SqlParameter("@MatKhau", data.MatKhau)
+            SqlParameter[] insertParams = {
+                new SqlParameter("@StudentID", data.StudentID),
+                new SqlParameter("@FullName", data.FullName),
+                new SqlParameter("@Gender", data.Gender),
+                new SqlParameter("@Address", data.Address),
+                new SqlParameter("@PhoneNumber", data.PhoneNumber),
+                new SqlParameter("@Email", data.Email),
+                new SqlParameter("@MaLoaiHV", "LHV01"), // Giả định mặc định, cần điều chỉnh nếu có logic
+                new SqlParameter("@EnrollmentDate", data.EnrollmentDate),
+                new SqlParameter("@Username", data.Username),
+                new SqlParameter("@Password", data.Password)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_STUDENTS", insertparams);
-
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_STUDENTS", insertParams);
             return result;
         }
+
         [HttpPost]
         [Route("suaThongTinHocVien")]
         public bool DoiThongTinHocVien([FromBody] HocVien data)
         {
             bool result = false;
 
-            SqlParameter[] updateparams = {
-                    new SqlParameter("@MaHV", data.MaHV),
-                    new SqlParameter("@TenHV", data.TenHV),
-                    new SqlParameter("@NgaySinh", data.NgaySinh),
-                    new SqlParameter("@GioiTinhHV", data.GioiTinhHV),
-                    new SqlParameter("@DiaChi", data.DiaChi),
-                    new SqlParameter("@SdtHV", data.SdtHV),
-                    new SqlParameter("@EmailHV", data.EmailHV),
-                    new SqlParameter("@MaLoaiHV", data.MaLoaiHV),
-                    new SqlParameter("@TenDangNhap", data.TenDangNhap),
-                    new SqlParameter("@MatKhau", data.MatKhau)
+            SqlParameter[] updateParams = {
+                new SqlParameter("@StudentID", data.StudentID),
+                new SqlParameter("@FullName", data.FullName),
+                new SqlParameter("@Gender", data.Gender),
+                new SqlParameter("@Address", data.Address),
+                new SqlParameter("@PhoneNumber", data.PhoneNumber),
+                new SqlParameter("@Email", data.Email),
+                new SqlParameter("@EnrollmentDate", data.EnrollmentDate),
+                new SqlParameter("@Username", data.Username),
+                new SqlParameter("@Password", data.Password)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_STUDENTS", updateparams);
-
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_STUDENTS", updateParams);
             return result;
         }
 
         [HttpPost]
         [Route("xoaThongTinHocVien")]
-        public bool XoaThongTinHocVien(string maHV, string maLoaiHV, string tenDangNhap= null)
+        public bool XoaThongTinHocVien(string studentID, string maLoaiHV, string username = null)
         {
             bool result = false;
 
-            SqlParameter[] deleteparams = {
-                    new SqlParameter("@MaHV", maHV),
-                    new SqlParameter("@TenDangNhap", tenDangNhap),
-                    new SqlParameter("@MaLoaiHV", maLoaiHV)
+            SqlParameter[] deleteParams = {
+                new SqlParameter("@StudentID", studentID),
+                new SqlParameter("@Username", username),
+                new SqlParameter("@MaLoaiHV", maLoaiHV)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_DELETE_STUDENTS", deleteparams);
-
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_STUDENTS", deleteParams);
             return result;
         }
     }

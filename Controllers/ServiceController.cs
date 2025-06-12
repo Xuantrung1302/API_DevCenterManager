@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using API_Technology_Students_Manages.DataAccess;
@@ -17,26 +16,26 @@ namespace API_Technology_Students_Manages.Controllers
     {
         DBConnect DBConnect = new DBConnect();
 
-        //API Account
+        // API Account
         [HttpGet]
         [Route("dangNhap")]
-        public object DangNhap(string tenDangNhap, string matKhau)
+        public object DangNhap(string username, string password)
         {
-            object taiKhoan = new List<object>();
+            object account = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] searchParams = {
-                    new SqlParameter("@TenDangNhap",tenDangNhap),
-                    new SqlParameter("@MatKhau",matKhau)
+                new SqlParameter("@Username", username),
+                new SqlParameter("@Password", password)
             };
 
             dt = DBConnect.ExecuteQuery("SP_LOGIN", searchParams);
 
             if (dt?.Rows?.Count > 0)
             {
-                taiKhoan = dt;
-                return taiKhoan;
+                account = dt;
+                return account;
             }
-            return taiKhoan;
+            return account;
         }
 
         [HttpPost]
@@ -44,64 +43,63 @@ namespace API_Technology_Students_Manages.Controllers
         public bool DoiMatKhau([FromBody] TaiKhoan data)
         {
             bool result = false;
-            string username = data.TenDangNhap.ToString();
-            string password = data.MatKhau.ToString();
+            string username = data.Username;
+            string password = data.Password;
 
-            SqlParameter[] updateparams = {
-                    new SqlParameter("@TenDangNhap", username),
-                    new SqlParameter("@MatKhau", password)
+            SqlParameter[] updateParams = {
+                new SqlParameter("@Username", username),
+                new SqlParameter("@Password", password)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_ACCOUNT", updateparams);
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_ACCOUNT", updateParams);
             return result;
         }
 
-
-        //API INFOR CENTER
+        // API INFOR CENTER
         [HttpGet]
         [Route("thongTinTrungTam")]
         public object ThongTinTrungTam()
         {
-            object thongTin = new List<object>();
+            object info = new List<object>();
             DataTable dt = new DataTable();
             dt = DBConnect.ExecuteQuery("SP_SELECT_CENTER_INFORMATION");
 
             if (dt?.Rows?.Count > 0)
             {
-                thongTin = dt;
-                return thongTin;
+                info = dt;
+                return info;
             }
-            return thongTin;
+            return info;
         }
+
         [HttpPost]
         [Route("suaThongTinTrungTam")]
         public bool SuaThongTinTrungTam([FromBody] ChiTietTrungTam data)
         {
             bool result = false;
-            string tenTT = data.TenTT.ToString();
-            string diaChiTT = data.DiaChiTT.ToString();
-            string sdtTT = data.SdtTT.ToString();
-            string website = data.Website.ToString();
-            string emailTT = data.EmailTT.ToString();   
-            SqlParameter[] updateparams = {
-                    new SqlParameter("@TenTT", tenTT),
-                    new SqlParameter("@DiaChiTT", diaChiTT),
-                    new SqlParameter("@SdtTT", sdtTT),
-                    new SqlParameter("@Website", website),
-                    new SqlParameter("@EmailTT", emailTT)
+            string centerName = data.CenterName;
+            string address = data.Address;
+            string phoneNumber = data.PhoneNumber;
+            string website = data.Website;
+            string email = data.Email;
 
-            }; 
+            SqlParameter[] updateParams = {
+                new SqlParameter("@CenterName", centerName),
+                new SqlParameter("@Address", address),
+                new SqlParameter("@PhoneNumber", phoneNumber),
+                new SqlParameter("@Website", website),
+                new SqlParameter("@Email", email)
+            };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_CENTER_INFORMATION", updateparams);
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_CENTER_INFORMATION", updateParams);
             return result;
         }
 
         [HttpGet]
         [Route("taoIdTuDong")]
-        public string TaoIDTuDong(string ngay, string ma)
+        public string TaoIDTuDong(string ngay, string prefix)
         {
-            return DBConnect.AutoGenerateId(ngay, ma);
+            return DBConnect.AutoGenerateId(ngay, prefix);
         }
-
     }
 }

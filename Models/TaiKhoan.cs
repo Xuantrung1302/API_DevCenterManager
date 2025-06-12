@@ -9,12 +9,12 @@ namespace API_Students_Manager.Models
     public class TaiKhoan
     {
         [Key]
-        public string TenDangNhap { get; set; }
-        public string MatKhau { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
-        public ICollection<HocVien> HocViens { get; set; }
-        public ICollection<NhanVien> NhanViens { get; set; }
-        public ICollection<GiangVien> GiangViens { get; set; }
+        //public ICollection<HocVien> HocViens { get; set; }
+        //public ICollection<NhanVien> NhanViens { get; set; }
+        //public ICollection<GiangVien> GiangViens { get; set; }
     }
 
 }

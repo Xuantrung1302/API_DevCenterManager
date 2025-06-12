@@ -8,18 +8,13 @@ namespace API_Students_Manager.Models
 {
     public class NhanVien
     {
-        public string MaNV { get; set; }
-        public string TenNV { get; set; }
-        public string SdtNV { get; set; }
-        public string EmailNV { get; set; }
-
-        // Foreign keys
-        public string MaLoaiNV { get; set; }
-        public LoaiNV LoaiNV { get; set; }
-
-        public string TenDangNhap { get; set; }
-        public string TaiKhoan { get; set; }
-        public string MatKhau {  get; set; }
+        public string EmployeeID { get; set; }
+        public string FullName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string Position { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 
 }

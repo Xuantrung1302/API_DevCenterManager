@@ -9,22 +9,15 @@ namespace API_Students_Manager.Models
     public class HocVien
     {
         [Key]
-        public string MaHV { get; set; }
-        public string TenHV { get; set; }
-        public string GioiTinhHV { get; set; }
-        public DateTime NgaySinh { get; set; }
-        public string DiaChi { get; set; }
-        public string SdtHV { get; set; }
-        public string EmailHV { get; set; }
-        public DateTime NgayTiepNhan { get; set; }
-
-        // Foreign keys
-        public string MaLoaiHV { get; set; }
-        public LoaiHV LoaiHV { get; set; }
-
-        public string TenDangNhap { get; set; }
-        public TaiKhoan TaiKhoan { get; set; }
-        public string MatKhau {  get; set; }
+        public string StudentID { get; set; }
+        public string FullName { get; set; }
+        public string Gender { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public DateTime EnrollmentDate { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 
 }

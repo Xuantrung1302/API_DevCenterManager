@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
@@ -14,24 +13,24 @@ namespace API_Technology_Students_Manages.Controllers
     public class ScoreController : ApiController
     {
         DBConnect DBConnect = new DBConnect();
+
         [HttpGet]
         [Route("thongTinDiem")]
-        public object LayDiem(string maHV = null)
+        public object LayDiem(string classID = null)
         {
-            object diem = new List<object>();
+            object scores = new List<object>();
             DataTable dt = new DataTable();
-            SqlParameter[] selectparams = {
-                    new SqlParameter("@maHv", maHV),
+            SqlParameter[] selectParams = {
+                new SqlParameter("@ClassID", classID)
             };
-            dt = DBConnect.ExecuteQuery("SP_SHOW_INFOR_OF_STUDENTS", selectparams);
+            dt = DBConnect.ExecuteQuery("SP_GET_CLASS_SCORE_ID", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
-                diem = dt;
-                return diem;
+                scores = dt;
+                return scores;
             }
-            return diem;
+            return scores;
         }
     }
-
 }
