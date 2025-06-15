@@ -38,6 +38,18 @@ namespace API_Technology_Students_Manages.Controllers
             return account;
         }
 
+        [HttpGet]
+        [Route("taoIdTuDong")]
+        public string TaoIDTuDong(string ngay, string prefix)
+        {
+            if (string.IsNullOrEmpty(ngay) || string.IsNullOrEmpty(prefix))
+            {
+                return null; // Hoặc ném ngoại lệ để trả về lỗi 400
+            }
+            return DBConnect.AutoGenerateId(ngay, prefix);
+        }
+
+
         [HttpPost]
         [Route("doiMatKhau")]
         public bool DoiMatKhau([FromBody] TaiKhoan data)
@@ -95,11 +107,5 @@ namespace API_Technology_Students_Manages.Controllers
             return result;
         }
 
-        [HttpGet]
-        [Route("taoIdTuDong")]
-        public string TaoIDTuDong(string ngay, string prefix)
-        {
-            return DBConnect.AutoGenerateId(ngay, prefix);
-        }
     }
 }

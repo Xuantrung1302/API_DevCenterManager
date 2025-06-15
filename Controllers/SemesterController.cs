@@ -24,11 +24,13 @@ namespace API_Technology_Students_Manages.Controllers
         {
             object semesters = new List<object>();
             DataTable dt = new DataTable();
+
+            // Tạo danh sách tham số với xử lý nullable
             SqlParameter[] selectParams = {
                 new SqlParameter("@SemesterID", (object)semesterID ?? DBNull.Value),
                 new SqlParameter("@SemesterName", (object)semesterName ?? DBNull.Value),
-                new SqlParameter("@StartDate", (object)startDate ?? DBNull.Value),
-                new SqlParameter("@EndDate", (object)endDate ?? DBNull.Value)
+                new SqlParameter("@StartDate", startDate.HasValue ? (object)startDate.Value : DBNull.Value),
+                new SqlParameter("@EndDate", endDate.HasValue ? (object)endDate.Value : DBNull.Value)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_SEMESTER", selectParams);

@@ -50,9 +50,9 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@FullName", data.FullName),
                 new SqlParameter("@Gender", data.Gender),
                 new SqlParameter("@Address", data.Address),
+                new SqlParameter("@BirthDate", data.BirthDate),
                 new SqlParameter("@PhoneNumber", data.PhoneNumber),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@MaLoaiHV", "LHV01"), // Giả định mặc định, cần điều chỉnh nếu có logic
                 new SqlParameter("@EnrollmentDate", data.EnrollmentDate),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
@@ -69,16 +69,17 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
 
             SqlParameter[] updateParams = {
-                new SqlParameter("@StudentID", data.StudentID),
-                new SqlParameter("@FullName", data.FullName),
-                new SqlParameter("@Gender", data.Gender),
-                new SqlParameter("@Address", data.Address),
-                new SqlParameter("@PhoneNumber", data.PhoneNumber),
-                new SqlParameter("@Email", data.Email),
-                new SqlParameter("@EnrollmentDate", data.EnrollmentDate),
-                new SqlParameter("@Username", data.Username),
-                new SqlParameter("@Password", data.Password)
-            };
+            new SqlParameter("@StudentID", data.StudentID),
+            new SqlParameter("@FullName", (object)data.FullName ?? DBNull.Value),
+            new SqlParameter("@BirthDate", data.BirthDate == DateTime.MinValue ? DBNull.Value : (object)data.BirthDate),
+            new SqlParameter("@Gender", (object)data.Gender ?? DBNull.Value),
+            new SqlParameter("@Address", (object)data.Address ?? DBNull.Value),
+            new SqlParameter("@PhoneNumber", (object)data.PhoneNumber ?? DBNull.Value),
+            new SqlParameter("@Email", (object)data.Email ?? DBNull.Value),
+            new SqlParameter("@EnrollmentDate", data.EnrollmentDate == DateTime.MinValue ? DBNull.Value : (object)data.EnrollmentDate),
+            new SqlParameter("@Username", (object)data.Username ?? DBNull.Value),
+            new SqlParameter("@Password", (object)data.Password ?? DBNull.Value)
+        };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_STUDENTS", updateParams);
             return result;

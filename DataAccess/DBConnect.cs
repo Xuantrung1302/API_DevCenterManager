@@ -105,7 +105,7 @@ namespace API_Technology_Students_Manages.DataAccess
             }
             return result;
         }
-        public string AutoGenerateId(string prefix)
+        public string AutoGenerateId(string ngayBD, string prefix)
         {
             string newId = string.Empty;
 
@@ -117,6 +117,7 @@ namespace API_Technology_Students_Manages.DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Add the input parameters
+                    cmd.Parameters.Add(new SqlParameter("@NgayBD", SqlDbType.Date)).Value = ngayBD;
                     cmd.Parameters.Add(new SqlParameter("@Prefix", SqlDbType.NVarChar, 10)).Value = prefix;
 
                     // Add the output parameter
