@@ -1,5 +1,6 @@
 ﻿using API_Technology_Students_Manages.DataAccess;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Http;
@@ -19,7 +20,8 @@ namespace API_Technology_Students_Manages.Controllers
             object invoices = new object();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
-                new SqlParameter("@StudentID", (object)studentId ?? DBNull.Value)
+                new SqlParameter("@StudentID", (object)studentId ?? DBNull.Value),
+                new SqlParameter("@SemesterID", DBNull.Value)
             };
 
             dt = DBConnect.ExecuteQuery("SP_GetInvoiceByStudentID", selectParams);
@@ -37,17 +39,19 @@ namespace API_Technology_Students_Manages.Controllers
         [Route("UpdateInvoice")]
         public bool Update([FromBody] InvoiceModel data)
         {
-            bool result = false;
-
-            SqlParameter[] updateParams = {
-                new SqlParameter("@InvoiceID", data.InvoiceID),
-                new SqlParameter("@InvoiceDate", data.InvoiceDate),
-                new SqlParameter("@Amount", data.Amount),
-                new SqlParameter("@Paid", data.Paid)
-            };
-
-            result = DBConnect.ExecuteNonQuery("SP_UpdateInvoice", updateParams);
-            return result;
+            bool allSuccess = true;
+            foreach (var invoiceId in data.InvoiceID)
+            {
+                SqlParameter[] updateParams = {
+            new SqlParameter("@InvoiceID", invoiceId),
+            new SqlParameter("@InvoiceDate", data.InvoiceDate),
+            new SqlParameter("@Amount", data.Amount),
+            new SqlParameter("@Paid", data.Paid)
+        };
+                bool result = DBConnect.ExecuteNonQuery("SP_UpdateInvoice", updateParams);
+                if (!result) allSuccess = false;
+            }
+            return allSuccess;
         }
 
         // POST: api/Invoice/CalculateTuition
@@ -72,7 +76,7 @@ namespace API_Technology_Students_Manages.Controllers
     // Model cho POST Update
     public class InvoiceModel
     {
-        public string InvoiceID { get; set; }
+        public List<string> InvoiceID { get; set; }
         public DateTime InvoiceDate { get; set; }
         public decimal Amount { get; set; }
         public bool Paid { get; set; }
