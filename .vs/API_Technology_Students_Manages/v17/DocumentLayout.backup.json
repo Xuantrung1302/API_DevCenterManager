@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|d:\\kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\api_devcentermanager\\controllers\\vietqrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\vietqrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\dataaccess\\dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:dataaccess\\dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|d:\\kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\api_devcentermanager\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\classcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\classcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Beesystem\\W1\\05-09-2024\\BT_QUANLYSP\\API\\ProjectDataAPI\\Controllers\\QLSPController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\models\\khoahoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:models\\khoahoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583E9A12-72A4-4700-A3CD-875CC975C64E}|API_Technology_Students_Manages.csproj|solutionrelative:controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 443,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WebApiConfig.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\App_Start\\WebApiConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\WebApiConfig.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\App_Start\\WebApiConfig.cs",
+              "RelativeToolTip": "App_Start\\WebApiConfig.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAYwBAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "QLSPController.cs",
+              "DocumentMoniker": "E:\\Beesystem\\W1\\05-09-2024\\BT_QUANLYSP\\API\\ProjectDataAPI\\Controllers\\QLSPController.cs",
+              "ToolTip": "E:\\Beesystem\\W1\\05-09-2024\\BT_QUANLYSP\\API\\ProjectDataAPI\\Controllers\\QLSPController.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T04:34:08.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TeacherController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\TeacherController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TeacherController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\TeacherController.cs",
+              "RelativeToolTip": "Controllers\\TeacherController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.57Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InvoiceController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\InvoiceController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InvoiceController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\InvoiceController.cs",
+              "RelativeToolTip": "Controllers\\InvoiceController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T16:03:10.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClassController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\ClassController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClassController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\ClassController.cs",
+              "RelativeToolTip": "Controllers\\ClassController.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAADgvysAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T06:35:16.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DBConnect.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\DataAccess\\DBConnect.cs",
+              "RelativeDocumentMoniker": "DataAccess\\DBConnect.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\DataAccess\\DBConnect.cs",
+              "RelativeToolTip": "DataAccess\\DBConnect.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAEwCQAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VietQRController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\VietQRController.cs",
+              "RelativeDocumentMoniker": "Controllers\\VietQRController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\VietQRController.cs",
+              "RelativeToolTip": "Controllers\\VietQRController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T06:51:39.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "Controllers\\CourseController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-04-27T05:12:09.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "KhoaHoc.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Models\\KhoaHoc.cs",
+              "RelativeDocumentMoniker": "Models\\KhoaHoc.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Models\\KhoaHoc.cs",
+              "RelativeToolTip": "Models\\KhoaHoc.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "StudentsController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\StudentsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\StudentsController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\StudentsController.cs",
+              "RelativeToolTip": "Controllers\\StudentsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ServiceController.cs",
+              "ToolTip": "D:\\Kh\u00F3a lu\u1EADn t\u1ED1t nghi\u1EC7p\\API_DevCenterManager\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAuwGYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-27T05:12:09.751Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 735,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{93c5e7ad-af06-49e6-a756-b8f3eaca790d}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 135,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
