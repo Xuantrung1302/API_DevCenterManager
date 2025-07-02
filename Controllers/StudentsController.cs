@@ -29,7 +29,7 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@EnrollmentDateEnd", enrollmentDateEnd),
                 new SqlParameter("@Gender", gender)
             };
-            dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_STUDENTS", searchParams);
+            dt = DBConnect.ExecuteQuery("SP_SELECT_STUDENT", searchParams);
 
             if (dt?.Rows?.Count > 0)
             {
@@ -58,7 +58,7 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Password", data.Password)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_STUDENTS", insertParams);
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_STUDENT", insertParams);
             return result;
         }
 
@@ -78,26 +78,26 @@ namespace API_Technology_Students_Manages.Controllers
             new SqlParameter("@Email", (object)data.Email ?? DBNull.Value),
             new SqlParameter("@EnrollmentDate", data.EnrollmentDate == DateTime.MinValue ? DBNull.Value : (object)data.EnrollmentDate),
             new SqlParameter("@Username", (object)data.Username ?? DBNull.Value),
-            new SqlParameter("@Password", (object)data.Password ?? DBNull.Value)
+            new SqlParameter("@Password", (object)data.Password ?? DBNull.Value),
+            new SqlParameter("@Status", data.Status)
         };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_STUDENTS", updateParams);
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_STUDENT", updateParams);
             return result;
         }
 
         [HttpPost]
         [Route("xoaThongTinHocVien")]
-        public bool XoaThongTinHocVien(string studentID, string maLoaiHV, string username = null)
+        public bool XoaThongTinHocVien(string studentID, string username = null)
         {
             bool result = false;
 
             SqlParameter[] deleteParams = {
                 new SqlParameter("@StudentID", studentID),
-                new SqlParameter("@Username", username),
-                new SqlParameter("@MaLoaiHV", maLoaiHV)
+                new SqlParameter("@Username", username)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_DELETE_STUDENTS", deleteParams);
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_STUDENT", deleteParams);
             return result;
         }
     }
