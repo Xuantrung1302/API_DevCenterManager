@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using API_Technology_Students_Manages.DataAccess;
 using API_Students_Manager.Models;
+using Newtonsoft.Json;
 
 namespace API_Technology_Students_Manages.Controllers
 {
@@ -57,10 +58,12 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
             string username = data.Username;
             string password = data.Password;
+            string role = data.Role;
 
             SqlParameter[] updateParams = {
                 new SqlParameter("@Username", username),
-                new SqlParameter("@Password", password)
+                new SqlParameter("@Password", password),
+                new SqlParameter("@Role",role)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_ACCOUNT", updateParams);
@@ -106,6 +109,53 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_CENTER_INFORMATION", updateParams);
             return result;
         }
+        [HttpPost]
+        [Route("xoaTaiKhoan")]
+        public bool XoaThongTinTaiKhoan(string username = null)
+        {
+            bool result = false;
 
+            SqlParameter[] deleteParams = {
+                new SqlParameter("@Username", username)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_ACCOUNT", deleteParams);
+            return result;
+        }
+
+        [HttpPost]
+        [Route("themTaiKhoan")]
+        public bool ThemTaiKhoan([FromBody] TaiKhoan data)
+        {
+            bool result = false;
+            string json = JsonConvert.SerializeObject(data);
+
+            SqlParameter[] insertParam = {
+                new SqlParameter("@json", json)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_ACCOUNT", insertParam);
+            return result;
+        }
+        [HttpGet]
+        [Route("thongTinTaiKhoan")]
+        public object DanhSachTaiKhoan(string role = null, string useName = null)
+        {
+            object account = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Role", role),
+                new SqlParameter("@Username", useName)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_ACCOUNT", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                account = dt;
+                return account;
+            }
+            return account;
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace API_Students_Manager.Models
         [Key]
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
 
         //public ICollection<HocVien> HocViens { get; set; }
         //public ICollection<NhanVien> NhanViens { get; set; }
