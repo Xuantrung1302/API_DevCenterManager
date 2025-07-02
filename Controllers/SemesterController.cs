@@ -90,5 +90,22 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_SEMESTER", deleteParams);
             return result;
         }
+
+        [HttpGet]
+        [Route("maKyHoc")]
+        public object DanhSachMaKyHoc()
+        { 
+            object semesters = new List<object>();
+            DataTable dt = new DataTable();
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SEMESTER_ID");
+
+            if (dt?.Rows?.Count > 0)
+            {
+                semesters = dt;
+                return semesters;
+            }
+            return semesters;
+        }
     }
 }
