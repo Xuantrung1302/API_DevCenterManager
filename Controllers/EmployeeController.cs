@@ -17,17 +17,17 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinNhanVien")]
-        public object DanhSachNhanVien(string employeeID = null, string fullName = null, string position = null)
+        public object DanhSachNhanVien(string employeeID = null, string fullName = null, string gender = null)
         {
             object employees = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
                 new SqlParameter("@EmployeeID", employeeID),
                 new SqlParameter("@FullName", fullName),
-                new SqlParameter("@Position", position)
+                new SqlParameter("@Gender", gender)
             };
 
-            dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_EMPLOYEE", selectParams);
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EMPLOYEE", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
@@ -47,8 +47,10 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@EmployeeID", data.EmployeeID),
                 new SqlParameter("@FullName", data.FullName),
                 new SqlParameter("@PhoneNumber", data.PhoneNumber),
+                new SqlParameter("@Gender", data.Gender),
+                new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@Position", data.Position),
+                new SqlParameter("@Status", data.Status),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
             };
@@ -67,13 +69,29 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@EmployeeID", data.EmployeeID),
                 new SqlParameter("@FullName", data.FullName),
                 new SqlParameter("@PhoneNumber", data.PhoneNumber),
+                new SqlParameter("@Gender", data.Gender),
+                new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@Position", data.Position),
+                new SqlParameter("@Status", data.Status),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_EMPLOYEE", updateParams);
+            return result;
+        }
+        [HttpPost]
+        [Route("xoaThongTinNhanVien")]
+        public bool XoaThongTinNhanVien(string employeeID, string username = null)
+        {
+            bool result = false;
+
+            SqlParameter[] deleteParams = {
+                new SqlParameter("@EmployeeID", employeeID),
+                new SqlParameter("@Username", username)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_EMPLOYEE", deleteParams);
             return result;
         }
     }
