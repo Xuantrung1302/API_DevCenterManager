@@ -28,7 +28,7 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Gender", gender)
             };
 
-            dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_TEACHER", selectParams);
+            dt = DBConnect.ExecuteQuery("SP_SELECT_TEACHER", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
@@ -65,6 +65,20 @@ namespace API_Technology_Students_Manages.Controllers
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_TEACHER", updateParam);
+            return result;
+        }
+        [HttpPost]
+        [Route("xoaThongTinGiangVien")]
+        public bool XoaThongTinGiangVien(string teacherID, string username = null)
+        {
+            bool result = false;
+
+            SqlParameter[] deleteParams = {
+                new SqlParameter("@TeacherID", teacherID),
+                new SqlParameter("@Username", username)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_TEACHER", deleteParams);
             return result;
         }
     }
