@@ -143,6 +143,7 @@
     <Compile Include="Models\GiangDay.cs" />
     <Compile Include="Models\GiangVien.cs" />
     <Compile Include="Models\HocVien.cs" />
+    <Compile Include="Models\KetQua.cs" />
     <Compile Include="Models\KhoaHoc.cs" />
     <Compile Include="Models\KyHoc.cs" />
     <Compile Include="Models\LoaiHV.cs" />
