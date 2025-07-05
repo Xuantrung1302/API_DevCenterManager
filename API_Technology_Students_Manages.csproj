@@ -121,6 +121,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
     <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Models\ThongBao.cs" />
     <Compile Include="Models\LichThi.cs" />
     <Compile Include="Models\DangKy.cs" />
+    <Compile Include="Models\DiemDanh.cs" />
     <Compile Include="Models\GiangDay.cs" />
     <Compile Include="Models\GiangVien.cs" />
     <Compile Include="Models\HocVien.cs" />
