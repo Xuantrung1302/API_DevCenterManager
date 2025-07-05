@@ -17,6 +17,7 @@ namespace API_Technology_Students_Manages.Controllers
     public class ExamController : ApiController
     {
         DBConnect DBConnect = new DBConnect();
+        #region LICH THI
         [HttpGet]
         [Route("layDanhSachLichThi")]
         public object LayDanhSachLichThi(string semesterID = null)
@@ -82,5 +83,74 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_EXAM_SCHEDULE", deleteParams);
             return result;
         }
+        #endregion
+        #region KET QUA
+        [HttpGet]
+        [Route("layDanhSachKetQua")]
+        public object LayDanhSachKetQua(string semesterID = null, string classID = null, string subjectID = null)
+        {
+            object ketQua = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                    new SqlParameter("@SemesterID", semesterID),
+                    new SqlParameter("@ClassID", classID),
+                    new SqlParameter("@SubjectID", subjectID)
+            };  
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_RESULT");
+
+            if (dt?.Rows?.Count > 0)
+            {
+                ketQua = dt;
+                return ketQua;
+            }
+            return ketQua;
+        }
+        [HttpPost]
+        [Route("themKetQua")]
+        public bool ThemKetQua([FromBody] KetQua data)
+        {
+            bool result = false;
+            string json = JsonConvert.SerializeObject(data);
+
+            SqlParameter[] insertParam = {
+                new SqlParameter("@json", json)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_EXAM_RESULT", insertParam);
+            return result;
+        }
+
+        [HttpPost]
+        [Route("suaThongTinKetQua")]
+        public bool DoiThongTinKetQua([FromBody] KetQua data)
+        {
+            bool result = false;
+            string json = JsonConvert.SerializeObject(data);
+
+            SqlParameter[] updateParam = {
+                new SqlParameter("@ResultID", data.ResultID),
+                new SqlParameter("@Score", data.Score),
+                new SqlParameter("@Status", data.Status),
+                new SqlParameter("@EnteredBy", data.EnteredBy),
+                new SqlParameter("@GradingDate", data.GradingDate)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_EXAM_RESULT", updateParam);
+            return result;
+        }
+        [HttpPost]
+        [Route("xoaKetQua")]
+        public bool XoaKetQua(string resultID)
+        {
+            bool result = false;
+
+            SqlParameter[] deleteParams = {
+                new SqlParameter("@ResultID", resultID)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_EXAM_RESULT", deleteParams);
+            return result;
+        }
+        #endregion
     }
 }
