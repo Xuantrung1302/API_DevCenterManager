@@ -123,6 +123,7 @@
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
     <Compile Include="Controllers\SemesterController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -133,6 +134,8 @@
     </Compile>
     <Compile Include="Models\BangDiem.cs" />
     <Compile Include="Models\ChiTietTrungTam.cs" />
+    <Compile Include="Models\ThongBao.cs" />
+    <Compile Include="Models\LichThi.cs" />
     <Compile Include="Models\DangKy.cs" />
     <Compile Include="Models\GiangDay.cs" />
     <Compile Include="Models\GiangVien.cs" />
