@@ -126,6 +126,7 @@
     <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\VietQRController.cs" />
     <Compile Include="DataAccess\DBConnect.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Models\LoaiHV.cs" />
     <Compile Include="Models\LoaiNV.cs" />
     <Compile Include="Models\LopHoc.cs" />
+    <Compile Include="Models\MonHoc.cs" />
     <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\PhieuGhiDanh.cs" />
     <Compile Include="Models\QuyDinh.cs" />
