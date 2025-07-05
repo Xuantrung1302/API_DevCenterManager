@@ -9,16 +9,23 @@ namespace API_Students_Manager.Models
     public class LopHoc
     {
         [Key]
-        public string MaLop { get; set; }
-        public string TenLop { get; set; }
-        public DateTime NgayBD { get; set; }
-        public DateTime NgayKT { get; set; }
-        public int SiSo { get; set; }
-        public bool DangMo { get; set; }
+        public Guid ClassID { get; set; }
 
-        // Foreign key
-        public string MaKH { get; set; }
-        public KhoaHoc KhoaHoc { get; set; }
+        public string SubjectID { get; set; }
+
+        public string ClassName { get; set; }
+
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime { get; set; }
+
+        public string Room { get; set; }
+
+        public string TeacherID { get; set; }
+
+        public int MaxSeats { get; set; }
+
+        public string DaysOfWeek { get; set; }
+
     }
-
 }

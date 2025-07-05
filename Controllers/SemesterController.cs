@@ -20,7 +20,7 @@ namespace API_Technology_Students_Manages.Controllers
         // API Semester
         [HttpGet]
         [Route("thongTinKyHoc")]
-        public object DanhSachKyHoc(string semesterID = null, string semesterName = null, DateTime? startDate = null, DateTime? endDate = null)
+        public object DanhSachKyHoc(string semesterID = null, string semesterName = null, string status = null)
         {
             object semesters = new List<object>();
             DataTable dt = new DataTable();
@@ -29,11 +29,10 @@ namespace API_Technology_Students_Manages.Controllers
             SqlParameter[] selectParams = {
                 new SqlParameter("@SemesterID", (object)semesterID ?? DBNull.Value),
                 new SqlParameter("@SemesterName", (object)semesterName ?? DBNull.Value),
-                new SqlParameter("@StartDate", startDate.HasValue ? (object)startDate.Value : DBNull.Value),
-                new SqlParameter("@EndDate", endDate.HasValue ? (object)endDate.Value : DBNull.Value)
+                new SqlParameter("@Status", (object)status ?? DBNull.Value)    
             };
 
-            dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_SEMESTER", selectParams);
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SEMESTER", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
@@ -70,7 +69,8 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@SemesterID", data.SemesterID),
                 new SqlParameter("@SemesterName", (object)data.SemesterName ?? DBNull.Value),
                 new SqlParameter("@StartDate", (object)data.StartDate ?? DBNull.Value),
-                new SqlParameter("@EndDate", (object)data.EndDate ?? DBNull.Value)
+                new SqlParameter("@EndDate", (object)data.EndDate ?? DBNull.Value),
+                new SqlParameter("@Status", (object)data.Status ?? DBNull.Value),
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_SEMESTER", updateParams);
