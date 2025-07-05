@@ -11,6 +11,6 @@ namespace API_Technology_Students_Manages.Models
         public string SemesterName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Status { get; set; }
+        public int Status { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace API_Technology_Students_Manages.Controllers
         // API Semester
         [HttpGet]
         [Route("thongTinKyHoc")]
-        public object DanhSachKyHoc(string semesterID = null, string semesterName = null, string status = null)
+        public object DanhSachKyHoc(int status,string semesterID = null, string semesterName = null)
         {
             object semesters = new List<object>();
             DataTable dt = new DataTable();
@@ -29,7 +29,7 @@ namespace API_Technology_Students_Manages.Controllers
             SqlParameter[] selectParams = {
                 new SqlParameter("@SemesterID", (object)semesterID ?? DBNull.Value),
                 new SqlParameter("@SemesterName", (object)semesterName ?? DBNull.Value),
-                new SqlParameter("@Status", (object)status ?? DBNull.Value)    
+                new SqlParameter("@Status", status)    
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_SEMESTER", selectParams);
