@@ -133,5 +133,24 @@ namespace API_Technology_Students_Manages.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("layDanhSachLopKeHoachByMaKy")]
+        public object LayDanhSachLopKeHoachByMaKy(string maKy = null)
+        {
+            object lop = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                    new SqlParameter("@semesterID", maKy),
+            };
+            dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS_PLAN", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                lop = dt;
+                return lop;
+            }
+            return lop;
+        }
+
     }
 }
