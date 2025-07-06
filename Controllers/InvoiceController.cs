@@ -1,4 +1,6 @@
-﻿using API_Technology_Students_Manages.DataAccess;
+﻿using API_Students_Manager.Models;
+using API_Technology_Students_Manages.DataAccess;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,17 +16,17 @@ namespace API_Technology_Students_Manages.Controllers
 
         // GET: api/Invoice/GetByStudentID
         [HttpGet]
-        [Route("GetInvoiceByStudentID")]
-        public object GetByStudentID(string studentId = null)
+        [Route("layThongTinHoaDonTheoMaHocVien")]
+        public object GetByStudentID(string studentId = null, string semesterID = null)
         {
             object invoices = new object();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
                 new SqlParameter("@StudentID", (object)studentId ?? DBNull.Value),
-                new SqlParameter("@SemesterID", DBNull.Value)
+                new SqlParameter("@SemesterID",(object)semesterID ?? DBNull.Value)
             };
 
-            dt = DBConnect.ExecuteQuery("SP_GetInvoiceByStudentID", selectParams);
+            dt = DBConnect.ExecuteQuery("SP_SELECT_INVOICE", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
@@ -36,8 +38,8 @@ namespace API_Technology_Students_Manages.Controllers
 
         // POST: api/Invoice/Update
         [HttpPost]
-        [Route("UpdateInvoice")]
-        public bool Update([FromBody] InvoiceModel data)
+        [Route("suaHoaDon")]
+        public bool SuaHoaDon([FromBody] InvoiceModel data)
         {
             bool allSuccess = true;
             foreach (var invoiceId in data.InvoiceID)
@@ -45,41 +47,74 @@ namespace API_Technology_Students_Manages.Controllers
                 SqlParameter[] updateParams = {
             new SqlParameter("@InvoiceID", invoiceId),
             new SqlParameter("@InvoiceDate", data.InvoiceDate),
+            new SqlParameter("@DueDate", data.DueDate),
             new SqlParameter("@Amount", data.Amount),
-            new SqlParameter("@Paid", data.Paid)
+            new SqlParameter("@Status", data.Status)
         };
-                bool result = DBConnect.ExecuteNonQuery("SP_UpdateInvoice", updateParams);
+                bool result = DBConnect.ExecuteNonQuery("SP_UPDATE_INVOICE", updateParams);
                 if (!result) allSuccess = false;
             }
             return allSuccess;
         }
-
-        // POST: api/Invoice/CalculateTuition
         [HttpPost]
-        [Route("CalculateTuition")]
-        public bool CalculateTuition([FromBody] TuitionModel data)
+        [Route("themHoaDon")]
+        public bool ThemHoaDon([FromBody] InvoiceModel data)
+        {
+            bool result = false;
+            string json = JsonConvert.SerializeObject(data);
+
+            SqlParameter[] insertParam = {
+                new SqlParameter("@json", json)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_INVOICE", insertParam);
+            return result;
+        }
+        [HttpPost]
+        [Route("xoaHoaDon")]
+        public bool XoaHoaDon(string invoiceID)
         {
             bool result = false;
 
-            SqlParameter[] calcParams = {
-                new SqlParameter("@StudentID", data.StudentID),
-                new SqlParameter("@SemesterID", data.SemesterID)
+            SqlParameter[] deleteParams = {
+                new SqlParameter("@InvoiceID", invoiceID)
             };
 
-            DataTable dt = DBConnect.ExecuteQuery("SP_CalculateTuitionBySemester", calcParams);
-            result = dt.Rows.Count > 0;
-
+            result = DBConnect.ExecuteNonQuery("SP_DELETE_INVOICE", deleteParams);
             return result;
         }
-    }
 
-    // Model cho POST Update
-    public class InvoiceModel
+        // POST: api/Invoice/CalculateTuition
+        /*      [HttpPost]
+              [Route("CalculateTuition")]
+              public bool CalculateTuition([FromBody] TuitionModel data)
+              {
+                  bool result = false;
+
+                  SqlParameter[] calcParams = {
+                      new SqlParameter("@StudentID", data.StudentID),
+                      new SqlParameter("@SemesterID", data.SemesterID)
+                  };
+
+                  DataTable dt = DBConnect.ExecuteQuery("SP_CalculateTuitionBySemester", calcParams);
+                  result = dt.Rows.Count > 0;
+
+                  return result;
+              }
+        */
+          }
+
+        // Model cho POST Update
+        public class InvoiceModel
     {
         public List<string> InvoiceID { get; set; }
-        public DateTime InvoiceDate { get; set; }
+        public string StudentID { get; set; }
+        public string SemesterID { get; set; }
+        public DateTime? InvoiceDate { get; set; }
+        public DateTime? DueDate { get; set; }
         public decimal Amount { get; set; }
-        public bool Paid { get; set; }
+        public bool? DeleteFlg { get; set; }
+        public string Status { get; set; }
     }
 
     // Model cho POST CalculateTuition
