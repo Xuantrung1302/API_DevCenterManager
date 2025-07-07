@@ -18,14 +18,13 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinGiangVien")]
-        public object DanhSachGiangVien(string teacherID = null, string fullName = null, string gender = null)
+        public object DanhSachGiangVien(string teacherID = null, string fullName = null)
         {
             object teachers = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
                 new SqlParameter("@TeacherID", teacherID),
-                new SqlParameter("@FullName", fullName),
-                new SqlParameter("@Gender", gender)
+                new SqlParameter("@FullName", fullName)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_TEACHER", selectParams);
@@ -40,33 +39,48 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpPost]
         [Route("themThongTinGiangVien")]
-        public bool ThemThongTinGiangVien([FromBody] GiangVien data)
+        public bool ThemThongTinGiangVien([FromBody] GiangVien giangVien)
         {
             bool result = false;
-            string json = JsonConvert.SerializeObject(data);
 
-            SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
+            SqlParameter[] parameters = {
+                new SqlParameter("@TeacherID", giangVien.TeacherID),
+                new SqlParameter("@FullName", giangVien.FullName),
+                new SqlParameter("@PhoneNumber", giangVien.PhoneNumber),
+                new SqlParameter("@Address", giangVien.Address),
+                new SqlParameter("@Gender", giangVien.Gender),
+                new SqlParameter("@Email", giangVien.Email),
+                new SqlParameter("@Degree", giangVien.Degree),
+                new SqlParameter("@Username", giangVien.Username),
+                new SqlParameter("@Password", giangVien.Password)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER", insertParam);
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER", parameters);
             return result;
         }
 
         [HttpPost]
         [Route("suaThongTinGiangVien")]
-        public bool DoiThongTinGiangVien([FromBody] GiangVien data)
+        public bool DoiThongTinGiangVien([FromBody] GiangVien giangVien)
         {
             bool result = false;
-            string json = JsonConvert.SerializeObject(data);
 
             SqlParameter[] updateParam = {
-                new SqlParameter("@json", json)
+                new SqlParameter("@TeacherID", giangVien.TeacherID),
+                new SqlParameter("@FullName", giangVien.FullName),
+                new SqlParameter("@PhoneNumber", giangVien.PhoneNumber),
+                new SqlParameter("@Address", giangVien.Address),
+                new SqlParameter("@Gender", giangVien.Gender),
+                new SqlParameter("@Email", giangVien.Email),
+                new SqlParameter("@Degree", giangVien.Degree),
+                new SqlParameter("@Username", giangVien.Username),
+                new SqlParameter("@Password", giangVien.Password)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_TEACHER", updateParam);
             return result;
         }
+
         [HttpPost]
         [Route("xoaThongTinGiangVien")]
         public bool XoaThongTinGiangVien(string teacherID, string username = null)
@@ -80,6 +94,26 @@ namespace API_Technology_Students_Manages.Controllers
 
             result = DBConnect.ExecuteNonQuery("SP_DELETE_TEACHER", deleteParams);
             return result;
+        }
+
+        [HttpGet]
+        [Route("thongTinLopDay")]
+        public object DanhSachLopGiangVienDay(string teacherID)
+        {
+            object listClass = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@TeacherID", teacherID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS_BY_TEACHER", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                listClass = dt;
+                return listClass;
+            }
+            return listClass;
         }
     }
 }
