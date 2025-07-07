@@ -193,7 +193,19 @@ namespace API_Technology_Students_Manages.Controllers
             return ketQua;
         }
 
+        [HttpPost]
+        [Route("taoLichHoc")]
+        public bool TaoLichHocChoLop(string classID)
+        {
+            bool result = false;
 
+            SqlParameter[] param = {
+                new SqlParameter("@ClassID", classID)
+             };
+
+            result = DBConnect.ExecuteNonQuery("SP_GENERATE_CLASS_SCHEDULE", param);
+            return result;
+        }
 
 
     }
