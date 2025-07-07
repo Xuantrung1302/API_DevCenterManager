@@ -207,6 +207,27 @@ namespace API_Technology_Students_Manages.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("getScheduleByUsername")]
+        public object GetScheduleByUsername(string username)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Username", username)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_SCHEDULE_BY_USERNAME", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+                return result;
+            }
+            return result;
+        }
+
 
     }
 }
