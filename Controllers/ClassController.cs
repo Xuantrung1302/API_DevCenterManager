@@ -18,14 +18,14 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
         [HttpGet]
         [Route("layLop")]
-        public object LayLop(string classID = null, string subjectID = null, string semesterStatus = null)
+        public object LayLop(string classID = null, string subjectID = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
                     new SqlParameter("@ClassID", classID),
-                    new SqlParameter("@SubjectID", subjectID),
-                    new SqlParameter("@SemesterStatus", semesterStatus)
+                    new SqlParameter("@SubjectID", subjectID)
+                    //new SqlParameter("@SemesterStatus", semesterStatus)
             };
             dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS", selectparams);
 
