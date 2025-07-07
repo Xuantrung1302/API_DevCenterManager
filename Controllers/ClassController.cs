@@ -227,6 +227,44 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return result;
         }
+        [HttpGet]
+        [Route("layDanhSachSinhVienTheoLop")]
+        public object LayDanhSachSinhVienTheoLop(string classID)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] param = {
+        new SqlParameter("@ClassID", classID)
+    };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_STUDENTS_BY_CLASS", param);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+            }
+            return result;
+        }
+        [HttpGet]
+        [Route("layDanhSachLopDaHocTheoSinhVien")]
+        public object LayDanhSachLopDaHocTheoSinhVien(string studentID)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] param = {
+        new SqlParameter("@StudentID", studentID)
+    };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_CLASSES_BY_STUDENT", param);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+            }
+            return result;
+        }
 
 
     }
