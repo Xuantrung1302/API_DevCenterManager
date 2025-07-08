@@ -47,7 +47,10 @@ namespace API_Technology_Students_Manages.Controllers
             string json = JsonConvert.SerializeObject(data);
 
             SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
+                new SqlParameter("@SubjectID", data.SubjectID),
+                new SqlParameter("@SemesterID", data.SemesterID),
+                new SqlParameter("@SubjectName", data.SubjectName),
+                new SqlParameter("@TuitionFee", data.TuitionFee)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_INSERT_SUBJECT", insertParam);
