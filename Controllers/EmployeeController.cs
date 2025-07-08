@@ -17,14 +17,13 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinNhanVien")]
-        public object DanhSachNhanVien(string employeeID = null, string fullName = null, string gender = null)
+        public object DanhSachNhanVien(string employeeID = null, string fullName = null)
         {
             object employees = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
                 new SqlParameter("@EmployeeID", employeeID),
-                new SqlParameter("@FullName", fullName),
-                new SqlParameter("@Gender", gender)
+                new SqlParameter("@FullName", fullName)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_EMPLOYEE", selectParams);
@@ -50,7 +49,6 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Gender", data.Gender),
                 new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@Status", data.Status),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
             };
@@ -72,7 +70,6 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Gender", data.Gender),
                 new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@Status", data.Status),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
             };
