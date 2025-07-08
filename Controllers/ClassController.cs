@@ -265,6 +265,7 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return result;
         }
+
         [HttpPost]
         [Route("themSinhVienVaoLop")]
         public bool ThemSinhVienVaoLoplment([FromBody] ClassEnrollment data)
@@ -284,6 +285,28 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_INSERT_CLASS_ENROLLMENT", insertParams);
             return result;
         }
+
+        [HttpGet]
+        [Route("layGiangVienChoLop")]
+        public object LayGiangVienChoLop(string classID)
+        {
+            object teachers = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@ClassID", classID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_TEACHERS_FOR_ADD_CLASS", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                teachers = dt;
+                return teachers;
+            }
+
+            return teachers;
+        }
+
 
     }
 }
