@@ -41,8 +41,7 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
 
             SqlParameter[] parameters = {
-                new SqlParameter("@RoomID", phong.RoomID),
-                new SqlParameter("@RoomName", phong.RoomName),
+                new SqlParameter("@Room", phong.RoomName),
                 new SqlParameter("@MaxSeats", phong.MaxSeats)
             };
 
@@ -52,7 +51,8 @@ namespace API_Technology_Students_Manages.Controllers
     }
     public class Room
     {
-        public string RoomID { get; set; }    
+        public Guid RoomID { get; set; }
+
         public string RoomName { get; set; }
         public int? MaxSeats { get; set; }
     }
