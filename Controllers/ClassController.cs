@@ -209,13 +209,15 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("getScheduleByUsername")]
-        public object GetScheduleByUsername(string username)
+        public object GetScheduleByUsername(string username, string code = null, string semesterID = null)
         {
             object result = new List<object>();
             DataTable dt = new DataTable();
 
             SqlParameter[] selectParams = {
-                new SqlParameter("@Username", username)
+                new SqlParameter("@Username", username),
+                new SqlParameter("@Code", code),
+                new SqlParameter("@SemesterID", semesterID)
             };
 
             dt = DBConnect.ExecuteQuery("SP_GET_SCHEDULE_BY_USERNAME", selectParams);
