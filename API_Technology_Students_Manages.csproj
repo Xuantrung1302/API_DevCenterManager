@@ -122,6 +122,7 @@
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\RecordController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
     <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Controllers\ExamController.cs" />
