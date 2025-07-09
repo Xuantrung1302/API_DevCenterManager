@@ -17,13 +17,14 @@ namespace API_Technology_Students_Manages.Controllers
         // GET: api/Invoice/GetByStudentID
         [HttpGet]
         [Route("layThongTinHoaDonTheoMaHocVien")]
-        public object GetByStudentID(string studentId = null, string semesterID = null)
+        public object GetByStudentID(string studentId = null, string semesterID = null, string status = null)
         {
             object invoices = new object();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
                 new SqlParameter("@StudentID", (object)studentId ?? DBNull.Value),
-                new SqlParameter("@SemesterID",(object)semesterID ?? DBNull.Value)
+                new SqlParameter("@SemesterID",(object)semesterID ?? DBNull.Value),
+                new SqlParameter("@Status",(object)status ?? DBNull.Value)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_INVOICE", selectParams);

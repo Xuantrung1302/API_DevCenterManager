@@ -266,6 +266,57 @@ namespace API_Technology_Students_Manages.Controllers
             return result;
         }
 
+        [HttpPost]
+        [Route("themSinhVienVaoLop")]
+        public bool ThemSinhVienVaoLoplment([FromBody] ClassEnrollment data)
+        {
+            bool result = false;
+
+            SqlParameter[] insertParams = {
+                new SqlParameter("@StudentID", data.StudentID),
+                new SqlParameter("@ClassID", data.ClassID),
+                new SqlParameter("@EnrollmentDate", (object)data.EnrollmentDate ?? DBNull.Value),
+                new SqlParameter("@ApprovedBy", (object)data.ApprovedBy ?? DBNull.Value),
+                new SqlParameter("@ApprovalDate", (object)data.ApprovalDate ?? DBNull.Value),
+                new SqlParameter("@CompletionStatus", (object)data.CompletionStatus ?? DBNull.Value),
+                new SqlParameter("@CompletionDate", (object)data.CompletionDate ?? DBNull.Value)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_CLASS_ENROLLMENT", insertParams);
+            return result;
+        }
+
+        [HttpGet]
+        [Route("layGiangVienChoLop")]
+        public object LayGiangVienChoLop(string classID)
+        {
+            object teachers = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@ClassID", classID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_TEACHERS_FOR_ADD_CLASS", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                teachers = dt;
+                return teachers;
+            }
+
+            return teachers;
+        }
+
 
     }
+}
+public class ClassEnrollment
+{
+    public string StudentID { get; set; }
+    public Guid ClassID { get; set; }
+    public DateTime? EnrollmentDate { get; set; }
+    public string ApprovedBy { get; set; }
+    public DateTime? ApprovalDate { get; set; }
+    public string CompletionStatus { get; set; }
+    public DateTime? CompletionDate { get; set; }
 }
