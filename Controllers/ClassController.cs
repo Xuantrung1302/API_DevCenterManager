@@ -308,6 +308,21 @@ namespace API_Technology_Students_Manages.Controllers
 
             return teachers;
         }
+        [HttpPost]
+        [Route("themGiangVienVaoLop")]
+        public bool ThemGiangVienVaoLop(string teacherID, string classID)
+        {
+            bool result = false;
+
+            SqlParameter[] insertParams = {
+                new SqlParameter("@ClassID", teacherID),
+                new SqlParameter("@TeacherID", classID)
+            };
+
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER_TO_CLASS", insertParams);
+            return result;
+        }
+
 
 
     }
