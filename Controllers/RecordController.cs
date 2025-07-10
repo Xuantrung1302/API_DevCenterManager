@@ -63,7 +63,10 @@ namespace API_Technology_Students_Manages.Controllers
             string json = JsonConvert.SerializeObject(data);
 
             SqlParameter[] updateParam = {
-                new SqlParameter("@json", json)
+                new SqlParameter("@AttendanceID", data.AttendanceID),
+                new SqlParameter("@Status", data.Status),
+                new SqlParameter("@RecordedBy", data.RecordedBy),
+                new SqlParameter("@Notes", data.Notes)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_ATTENDANCE_RECORD", updateParam);
