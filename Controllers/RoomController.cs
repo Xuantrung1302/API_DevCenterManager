@@ -17,12 +17,12 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
         [HttpGet]
         [Route("layLop")]
-        public object LayLop(string roomName = null)
+        public object LayLop(string room = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@RoomName", roomName)
+                    new SqlParameter("@Room", room)
             };
             dt = DBConnect.ExecuteQuery("SP_GET_ALL_ROOMS", selectparams);
 
