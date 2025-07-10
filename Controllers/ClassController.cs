@@ -97,11 +97,17 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
             string json = JsonConvert.SerializeObject(data);
 
-            SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
+            SqlParameter[] insertparams = {
+                    new SqlParameter("@SubjectID", data.SubjectID),
+                    new SqlParameter("@ClassName", data.ClassName),
+                    new SqlParameter("@StartTime", data.StartTime),
+                    new SqlParameter("@EndTime", data.EndTime),
+                    new SqlParameter("@Room", data.Room),
+                    new SqlParameter("@TeacherID", data.TeacherID),
+                    new SqlParameter("@DaysOfWeek", data.DaysOfWeek),
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_CLASS", insertParam);
+            result = DBConnect.ExecuteNonQuery("SP_INSERT_CLASS", insertparams);
             return result;
         }
 
@@ -112,11 +118,17 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
             string json = JsonConvert.SerializeObject(data);
 
-            SqlParameter[] updateParam = {
-                new SqlParameter("@json", json)
+            SqlParameter[] updateparams = {
+                    new SqlParameter("@SubjectID", data.SubjectID),
+                    new SqlParameter("@ClassName", data.ClassName),
+                    new SqlParameter("@StartTime", data.StartTime),
+                    new SqlParameter("@EndTime", data.EndTime),
+                    new SqlParameter("@Room", data.Room),
+                    new SqlParameter("@TeacherID", data.TeacherID),
+                    new SqlParameter("@DaysOfWeek", data.DaysOfWeek),
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_CLASS", updateParam);
+            result = DBConnect.ExecuteNonQuery("SP_UPDATE_CLASS", updateparams);
             return result;
         }
         [HttpPost]
@@ -209,13 +221,15 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("getScheduleByUsername")]
-        public object GetScheduleByUsername(string username)
+        public object GetScheduleByUsername(string username, string code = null, string semesterID = null)
         {
             object result = new List<object>();
             DataTable dt = new DataTable();
 
             SqlParameter[] selectParams = {
-                new SqlParameter("@Username", username)
+                new SqlParameter("@Username", username),
+                new SqlParameter("@Code", code),
+                new SqlParameter("@SemesterID", semesterID)
             };
 
             dt = DBConnect.ExecuteQuery("SP_GET_SCHEDULE_BY_USERNAME", selectParams);
