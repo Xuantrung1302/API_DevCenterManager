@@ -32,5 +32,26 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return scores;
         }
+
+
+        [HttpGet]
+        [Route("diemHocSinhTheoLop")]
+        public object LayDiem(string ClassID = null, string StudentID = null)
+        {
+            object scores = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@ClassID", ClassID),
+                new SqlParameter("@StudentID", StudentID)
+            };
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SCORE_OF_STUDENT_BY_CLASS", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                scores = dt;
+                return scores;
+            }
+            return scores;
+        }
     }
 }
