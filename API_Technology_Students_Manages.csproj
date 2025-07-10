@@ -131,6 +131,7 @@
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\VietQRController.cs" />
+    <Compile Include="Controllers\VNPayController.cs" />
     <Compile Include="DataAccess\DBConnect.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
