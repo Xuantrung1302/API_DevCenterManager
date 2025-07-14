@@ -26,6 +26,8 @@ namespace API_Students_Manager.Models
         public int MaxSeats { get; set; }
 
         public string DaysOfWeek { get; set; }
+        public int StudentCount {  get; set; }
+
 
     }
 }

@@ -18,13 +18,14 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
         [HttpGet]
         [Route("layLop")]
-        public object LayLop(string classID = null, string subjectID = null)
+        public object LayLop(string classID = null, string subjectID = null, string semesterID = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
                     new SqlParameter("@ClassID", classID),
-                    new SqlParameter("@SubjectID", subjectID)
+                    new SqlParameter("@SubjectID", subjectID),
+                    new SqlParameter("@SemesterID", semesterID)
                     //new SqlParameter("@SemesterStatus", semesterStatus)
             };
             dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS", selectparams);
@@ -95,7 +96,7 @@ namespace API_Technology_Students_Manages.Controllers
         public bool ThemThongTinGiangVien([FromBody] LopHoc data)
         {
             bool result = false;
-            string json = JsonConvert.SerializeObject(data);
+
 
             SqlParameter[] insertparams = {
                     new SqlParameter("@SubjectID", data.SubjectID),
@@ -104,7 +105,8 @@ namespace API_Technology_Students_Manages.Controllers
                     new SqlParameter("@EndTime", data.EndTime),
                     new SqlParameter("@Room", data.Room),
                     new SqlParameter("@TeacherID", data.TeacherID),
-                    new SqlParameter("@DaysOfWeek", data.DaysOfWeek),
+                    new SqlParameter("@MaxSeats", data.MaxSeats),
+                    new SqlParameter("@DaysOfWeek", data.DaysOfWeek)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_INSERT_CLASS", insertparams);
@@ -116,7 +118,7 @@ namespace API_Technology_Students_Manages.Controllers
         public bool DoiThongTinGiangVien([FromBody] LopHoc data)
         {
             bool result = false;
-            string json = JsonConvert.SerializeObject(data);
+
 
             SqlParameter[] updateparams = {
                     new SqlParameter("@SubjectID", data.SubjectID),
@@ -125,6 +127,7 @@ namespace API_Technology_Students_Manages.Controllers
                     new SqlParameter("@EndTime", data.EndTime),
                     new SqlParameter("@Room", data.Room),
                     new SqlParameter("@TeacherID", data.TeacherID),
+                    new SqlParameter("@MaxSeats", data.MaxSeats),
                     new SqlParameter("@DaysOfWeek", data.DaysOfWeek),
             };
 
