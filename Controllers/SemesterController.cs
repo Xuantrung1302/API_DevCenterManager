@@ -51,7 +51,8 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@SemesterID", data.SemesterID),
                 new SqlParameter("@SemesterName", data.SemesterName),
                 new SqlParameter("@StartDate", data.StartDate),
-                new SqlParameter("@EndDate", data.EndDate)
+                new SqlParameter("@EndDate", data.EndDate),
+                new SqlParameter("@CourseID", data.CourseID)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_INSERT_SEMESTER", insertParams);
