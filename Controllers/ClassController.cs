@@ -18,15 +18,13 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
         [HttpGet]
         [Route("layLop")]
-        public object LayLop(string classID = null, string subjectID = null, string semesterID = null)
+        public object LayLop(string className = null, string courseID = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@ClassID", classID),
-                    new SqlParameter("@SubjectID", subjectID),
-                    new SqlParameter("@SemesterID", semesterID)
-                    //new SqlParameter("@SemesterStatus", semesterStatus)
+                    new SqlParameter("@ClassName", className),
+                    new SqlParameter("@CourseID", courseID)
             };
             dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS", selectparams);
 
@@ -93,13 +91,13 @@ namespace API_Technology_Students_Manages.Controllers
                 }*/
         [HttpPost]
         [Route("themLop")]
-        public bool ThemThongTinGiangVien([FromBody] LopHoc data)
+        public bool ThemThongTinLop([FromBody] LopHoc data)
         {
             bool result = false;
 
 
             SqlParameter[] insertparams = {
-                    new SqlParameter("@SubjectID", data.SubjectID),
+                    new SqlParameter("@CourseID", data.CourseID),
                     new SqlParameter("@ClassName", data.ClassName),
                     new SqlParameter("@StartTime", data.StartTime),
                     new SqlParameter("@EndTime", data.EndTime),
@@ -115,13 +113,14 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpPost]
         [Route("suaThongTinLop")]
-        public bool DoiThongTinGiangVien([FromBody] LopHoc data)
+        public bool DoiThongTinLopHoc([FromBody] LopHoc data)
         {
             bool result = false;
 
 
             SqlParameter[] updateparams = {
-                    new SqlParameter("@SubjectID", data.SubjectID),
+                    new SqlParameter("@ClassID", data.ClassID),
+                    new SqlParameter("@CourseID", data.CourseID),
                     new SqlParameter("@ClassName", data.ClassName),
                     new SqlParameter("@StartTime", data.StartTime),
                     new SqlParameter("@EndTime", data.EndTime),
@@ -129,6 +128,8 @@ namespace API_Technology_Students_Manages.Controllers
                     new SqlParameter("@TeacherID", data.TeacherID),
                     new SqlParameter("@MaxSeats", data.MaxSeats),
                     new SqlParameter("@DaysOfWeek", data.DaysOfWeek),
+                    new SqlParameter("@StudentCount", data.StudentCount),
+                    new SqlParameter("@Status", data.Status),
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_CLASS", updateparams);
