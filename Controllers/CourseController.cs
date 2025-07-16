@@ -17,15 +17,13 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
         [HttpGet]
         [Route("chiTietChuongTrinhHoc")]
-        public object DanhSachChiTietKhoaHoc(string courseId = null, string semesterName = null, string subjectName = null)
+        public object DanhSachChiTietKhoaHoc(string courseId = null)
         {
             object courseDetail = new List<object>();
             DataTable dt = new DataTable();
 
             SqlParameter[] selectparams = {
-        new SqlParameter("@CourseID", (object)courseId ?? DBNull.Value),
-        new SqlParameter("@SemesterName", (object)semesterName ?? DBNull.Value),
-        new SqlParameter("@SubjectName", (object)subjectName ?? DBNull.Value),
+        new SqlParameter("@CourseID", (object)courseId ?? DBNull.Value)
     };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_COURSE_DETAIL", selectparams);
