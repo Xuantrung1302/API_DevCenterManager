@@ -222,6 +222,28 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_GENERATE_CLASS_SCHEDULE", param);
             return result;
         }
+        [HttpGet]
+        [Route("layDanhSachLichHoc")]
+        public object GetSchedule(string courseID, string classID = null, string semesterID = null)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] selectParams = {
+                new SqlParameter("@CourseID", courseID),
+                new SqlParameter("@ClassID", classID),
+                new SqlParameter("@SemesterID", semesterID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_CLASS_SCHEDULE", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+                return result;
+            }
+            return result;
+        }
 
         [HttpGet]
         [Route("getScheduleByUsername")]
