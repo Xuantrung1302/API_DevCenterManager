@@ -20,12 +20,12 @@ namespace API_Technology_Students_Manages.Controllers
         #region LICH THI
         [HttpGet]
         [Route("layDanhSachLichThi")]
-        public object LayDanhSachLichThi(string semesterID = null)
+        public object LayDanhSachLichThi(string classID = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@SemesterID", semesterID),
+                    new SqlParameter("@ClassID", classID),
             };
             dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE");
 
@@ -44,7 +44,16 @@ namespace API_Technology_Students_Manages.Controllers
             string json = JsonConvert.SerializeObject(data);
 
             SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
+                    new SqlParameter("@ExamID", data.ExamID),
+                    new SqlParameter("@ClassID", data.ClassID),
+                    new SqlParameter("@SubjectID", data.SubjectID ?? (object)DBNull.Value),  
+                    new SqlParameter("@ExamName", data.ExamName),
+                    new SqlParameter("@ExamType", data.ExamType),
+                    new SqlParameter("@ExamDateStart", data.ExamDateStart),
+                    new SqlParameter("@ExamDateEnd", data.ExamDateEnd),
+                    new SqlParameter("@Room", data.Room),
+                    new SqlParameter("@CreatedBy", data.CreatedBy),
+                    new SqlParameter("@CreatedDate", data.CreatedDate)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_INSERT_EXAM_SCHEDULE", insertParam);
@@ -64,7 +73,8 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@ExamType", data.ExamType),
                 new SqlParameter("@ExamDateStart", data.ExamDateStart),
                 new SqlParameter("@ExamDateEnd", data.ExamDateEnd),
-                new SqlParameter("@Room", data.Room)
+                new SqlParameter("@Room", data.Room),
+                new SqlParameter("@SubjectID", data.SubjectID ?? (object)DBNull.Value),
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_EXAM_SCHEDULE", updateParam);
