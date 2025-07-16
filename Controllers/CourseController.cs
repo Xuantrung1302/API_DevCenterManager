@@ -57,6 +57,26 @@ namespace API_Technology_Students_Manages.Controllers
 
             return courseList;
         }
+        [HttpGet]
+        [Route("danhSachLopTrongKhoaHoc")]
+        public object DanhSachLopTrongKhoaHoc(string courseId = null)
+        {
+            object classList = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] selectparams = {
+        new SqlParameter("@CourseID", (object)courseId ?? DBNull.Value),
+    };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_CLASSES_BY_COURSE", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                classList = dt;
+            }
+
+            return classList;
+        }
 
 
         //API Course
