@@ -20,13 +20,14 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinMonHoc")]
-        public object DanhSachMonHoc(string subjectID = null, string semesterID = null)
+        public object DanhSachMonHoc(string subjectID = null, string semesterID = null, string classID = null)
         {
             object subject = new List<object>();
             DataTable dt = new DataTable(); 
             SqlParameter[] selectParams = {
                 new SqlParameter("@SubjectID", subjectID),
-                new SqlParameter("@SemesterID", semesterID)
+                new SqlParameter("@SemesterID", semesterID),
+                new SqlParameter("@ClassID", classID)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_SUBJECT", selectParams);

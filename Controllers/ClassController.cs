@@ -224,14 +224,15 @@ namespace API_Technology_Students_Manages.Controllers
         }
         [HttpGet]
         [Route("layDanhSachLichHoc")]
-        public object GetSchedule(string courseID, string classID = null)
+        public object GetSchedule(string courseID, string classID = null, string subjectID = null)
         {
             object result = new List<object>();
             DataTable dt = new DataTable();
 
             SqlParameter[] selectParams = {
                 new SqlParameter("@CourseID", courseID),
-                new SqlParameter("@ClassID", classID)
+                new SqlParameter("@ClassID", classID),
+                new SqlParameter("@SubjectID", subjectID)
                 //new SqlParameter("@SemesterID", semesterID)
             };
 
