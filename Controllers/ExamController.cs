@@ -28,7 +28,7 @@ namespace API_Technology_Students_Manages.Controllers
                     new SqlParameter("@CourseID", courseID),
                     new SqlParameter("@SubjectName", subjectName)
             };
-            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE");
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE", selectparams);
 
             if (dt?.Rows?.Count > 0)
             {
