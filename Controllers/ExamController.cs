@@ -20,12 +20,13 @@ namespace API_Technology_Students_Manages.Controllers
         #region LICH THI
         [HttpGet]
         [Route("layDanhSachLichThi")]
-        public object LayDanhSachLichThi(string classID = null)
+        public object LayDanhSachLichThi(string courseID = null, string subjectID = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@ClassID", classID),
+                    new SqlParameter("@CourseID", courseID),
+                    new SqlParameter("@SubjectID", subjectID)
             };
             dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE");
 
