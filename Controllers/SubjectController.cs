@@ -88,5 +88,27 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_SUBJECT", deleteParams);
             return result;
         }
+
+        [HttpGet]
+        [Route("layNgayCuoiCungCuaMon")]
+        public object LayNgayCuoiCungCuaMon(string classID, string subjectID)
+        {
+            object param = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@ClassID", classID),
+                 new SqlParameter("@SubjectID", subjectID),
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_SUBJECT_ENDTIME", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                param = dt;
+                return param;
+            }
+
+            return param;
+        }
     }
 }
