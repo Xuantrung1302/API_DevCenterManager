@@ -34,5 +34,27 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return subject;
         }
+
+        [HttpGet]
+        [Route("thongKeTopNamKhoaHoc")]
+        public object TopKhoaHoc(string year = null)
+        {
+            object subject = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Year", year)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_TOP_5_COURSE_BY_ENROLLMENT", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                subject = dt;
+                return subject;
+            }
+            return subject;
+        }
+
+
     }
 }
