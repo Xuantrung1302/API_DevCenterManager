@@ -55,6 +55,26 @@ namespace API_Technology_Students_Manages.Controllers
             return subject;
         }
 
+        [HttpGet]
+        [Route("thongKeTyLeTotNghiep")]
+        public object TyLeTotNghiep(string year = null)
+        {
+            object subject = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Year", year)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_GRADUATION_RATE_BY_YEAR", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                subject = dt;
+                return subject;
+            }
+            return subject;
+        }
+
 
     }
 }
