@@ -20,7 +20,7 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinMonHoc")]
-        public object DanhSachMonHoc(string subjectID = null, string semesterID = null, string classID = null)
+        public object DanhSachMonHoc(string classID = null, string subjectID = null, string semesterID = null)
         {
             object subject = new List<object>();
             DataTable dt = new DataTable(); 
