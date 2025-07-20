@@ -110,5 +110,25 @@ namespace API_Technology_Students_Manages.Controllers
 
             return param;
         }
+        [HttpGet]
+        [Route("layDanhSachMonHocTheoKhoaHoc")]
+        public object LayDanhSachMonHocTheoKhoaHoc(string courseID)
+        {
+            object param = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@CourseID", courseID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SUBJECT_BY_COURSE", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                param = dt;
+                return param;
+            }
+
+            return param;
+        }
     }
 }
