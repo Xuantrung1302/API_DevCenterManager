@@ -45,7 +45,7 @@ namespace API_Technology_Students_Manages.Controllers
             string json = JsonConvert.SerializeObject(data);
 
             SqlParameter[] insertParam = {
-                    new SqlParameter("@ExamID", data.ExamID),
+                    //new SqlParameter("@ExamID", data.ExamID),
                     new SqlParameter("@ClassID", data.ClassID),
                     new SqlParameter("@SubjectID", data.SubjectID ?? (object)DBNull.Value),  
                     new SqlParameter("@ExamName", data.ExamName),
