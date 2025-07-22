@@ -270,13 +270,15 @@ namespace API_Technology_Students_Manages.Controllers
         }
         [HttpGet]
         [Route("layDanhSachSinhVienTheoLop")]
-        public object LayDanhSachSinhVienTheoLop(string classID)
+        public object LayDanhSachSinhVienTheoLop(string classID, string subjectID)
         {
             object result = new List<object>();
             DataTable dt = new DataTable();
 
             SqlParameter[] param = {
-        new SqlParameter("@ClassID", classID)
+        new SqlParameter("@ClassID", classID),
+        new SqlParameter("@SubjectID", subjectID),
+
     };
 
             dt = DBConnect.ExecuteQuery("SP_GET_STUDENTS_BY_CLASS", param);
