@@ -98,16 +98,15 @@ namespace API_Technology_Students_Manages.Controllers
         #region KET QUA
         [HttpGet]
         [Route("layDanhSachKetQua")]
-        public object LayDanhSachKetQua(string semesterID = null, string classID = null, string subjectID = null)
+        public object LayDanhSachKetQua(string classID = null, string subjectID = null)
         {
             object ketQua = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@SemesterID", semesterID),
                     new SqlParameter("@ClassID", classID),
                     new SqlParameter("@SubjectID", subjectID)
             };  
-            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_RESULT");
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_RESULT", selectparams);
 
             if (dt?.Rows?.Count > 0)
             {
