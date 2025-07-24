@@ -8,7 +8,7 @@ namespace API_Technology_Students_Manages.Models
 {
     public class ThongBao
     {
-        public string NewID { get; set; }
+        public string NewsID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime PostDate { get; set; }

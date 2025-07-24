@@ -34,35 +34,35 @@ namespace API_Technology_Students_Manages.Controllers
         }
         [HttpPost]
         [Route("themThongBao")]
-        public bool ThemThongBao([FromBody] ThongBao data)
+        public bool ThemThongBao([FromBody] ThongBao model)
         {
-            bool result = false;
-            string json = JsonConvert.SerializeObject(data);
-
             SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
-            };
+        new SqlParameter("@Title", model.Title),
+        new SqlParameter("@Content", model.Content),
+        new SqlParameter("@PostDate", model.PostDate),
+        new SqlParameter("@PostedBy", model.PostedBy)
+    };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_NOTICE", insertParam);
-            return result;
+            return DBConnect.ExecuteNonQuery("SP_INSERT_NOTICE", insertParam);
         }
+
 
         [HttpPost]
         [Route("suaThongTinThongBao")]
-        public bool DoiThongTinThongBao([FromBody] ThongBao data)
+        public bool DoiThongTinThongBao([FromBody] ThongBao model)
         {
-            bool result = false;
-            string json = JsonConvert.SerializeObject(data);
-
             SqlParameter[] updateParam = {
-                 new SqlParameter("@NewID", data.NewID),
-                 new SqlParameter("@Title", data.Title),
-                 new SqlParameter("@Content", data.Content),
-            };
+        new SqlParameter("@NewsID", Guid.Parse(model.NewsID)),
+        new SqlParameter("@Title", model.Title),
+        new SqlParameter("@Content", model.Content),
+        new SqlParameter("@PostDate", model.PostDate),
+        new SqlParameter("@PostedBy", model.PostedBy)
+    };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_NOTICE", updateParam);
-            return result;
+            return DBConnect.ExecuteNonQuery("SP_UPDATE_NOTICE", updateParam);
         }
+
+
         [HttpPost]
         [Route("xoaThongBao")]
         public bool XoaThongBao(string newID)
@@ -70,7 +70,7 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
 
             SqlParameter[] deleteParams = {
-                new SqlParameter("@NewID", newID)
+                new SqlParameter("@NewsID", newID)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_DELETE_NOTICE", deleteParams);
