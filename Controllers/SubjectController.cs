@@ -20,13 +20,14 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinMonHoc")]
-        public object DanhSachMonHoc(string subjectID = null, string semesterID = null)
+        public object DanhSachMonHoc(string classID = null, string subjectID = null, string semesterID = null)
         {
             object subject = new List<object>();
             DataTable dt = new DataTable(); 
             SqlParameter[] selectParams = {
                 new SqlParameter("@SubjectID", subjectID),
-                new SqlParameter("@SemesterID", semesterID)
+                new SqlParameter("@SemesterID", semesterID),
+                new SqlParameter("@ClassID", classID)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_SUBJECT", selectParams);
@@ -86,6 +87,69 @@ namespace API_Technology_Students_Manages.Controllers
 
             result = DBConnect.ExecuteNonQuery("SP_DELETE_SUBJECT", deleteParams);
             return result;
+        }
+
+        [HttpGet]
+        [Route("layNgayCuoiCungCuaMon")]
+        public object LayNgayCuoiCungCuaMon(string classID, string subjectID)
+        {
+            object param = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@ClassID", classID),
+                 new SqlParameter("@SubjectID", subjectID),
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_SUBJECT_ENDTIME", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                param = dt;
+                return param;
+            }
+
+            return param;
+        }
+        [HttpGet]
+        [Route("layDanhSachMonHocTheoKhoaHoc")]
+        public object LayDanhSachMonHocTheoKhoaHoc(string courseID)
+        {
+            object param = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@CourseID", courseID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SUBJECT_BY_COURSE", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                param = dt;
+                return param;
+            }
+
+            return param;
+        }
+
+        [HttpGet]
+        [Route("layDanhSachMonHocTheoLopHoc")]
+        public object LayDanhSachMonHocTheoLopHoc(string classID)
+        {
+            object param = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@ClassID", classID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SUBJECT_BY_CLASS", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                param = dt;
+                return param;
+            }
+
+            return param;
         }
     }
 }

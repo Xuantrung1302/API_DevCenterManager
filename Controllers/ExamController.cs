@@ -20,14 +20,15 @@ namespace API_Technology_Students_Manages.Controllers
         #region LICH THI
         [HttpGet]
         [Route("layDanhSachLichThi")]
-        public object LayDanhSachLichThi(string semesterID = null)
+        public object LayDanhSachLichThi(string courseID = null, string subjectID = null)
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@SemesterID", semesterID),
+                    new SqlParameter("@CourseID", courseID),
+                    new SqlParameter("@SubjectID", subjectID)
             };
-            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE");
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE", selectparams);
 
             if (dt?.Rows?.Count > 0)
             {
@@ -44,7 +45,16 @@ namespace API_Technology_Students_Manages.Controllers
             string json = JsonConvert.SerializeObject(data);
 
             SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
+                    //new SqlParameter("@ExamID", data.ExamID),
+                    new SqlParameter("@ClassID", data.ClassID),
+                    new SqlParameter("@SubjectID", data.SubjectID ?? (object)DBNull.Value),  
+                    new SqlParameter("@ExamName", data.ExamName),
+                    new SqlParameter("@ExamType", data.ExamType),
+                    new SqlParameter("@ExamDateStart", data.ExamDateStart),
+                    new SqlParameter("@ExamDateEnd", data.ExamDateEnd),
+                    new SqlParameter("@Room", data.Room),
+                    new SqlParameter("@CreatedBy", data.CreatedBy),
+                    new SqlParameter("@CreatedDate", data.CreatedDate)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_INSERT_EXAM_SCHEDULE", insertParam);
@@ -64,7 +74,8 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@ExamType", data.ExamType),
                 new SqlParameter("@ExamDateStart", data.ExamDateStart),
                 new SqlParameter("@ExamDateEnd", data.ExamDateEnd),
-                new SqlParameter("@Room", data.Room)
+                new SqlParameter("@Room", data.Room),
+                new SqlParameter("@SubjectID", data.SubjectID ?? (object)DBNull.Value),
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_EXAM_SCHEDULE", updateParam);
@@ -87,16 +98,15 @@ namespace API_Technology_Students_Manages.Controllers
         #region KET QUA
         [HttpGet]
         [Route("layDanhSachKetQua")]
-        public object LayDanhSachKetQua(string semesterID = null, string classID = null, string subjectID = null)
+        public object LayDanhSachKetQua(string classID = null, string subjectID = null)
         {
             object ketQua = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectparams = {
-                    new SqlParameter("@SemesterID", semesterID),
                     new SqlParameter("@ClassID", classID),
                     new SqlParameter("@SubjectID", subjectID)
             };  
-            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_RESULT");
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_RESULT", selectparams);
 
             if (dt?.Rows?.Count > 0)
             {

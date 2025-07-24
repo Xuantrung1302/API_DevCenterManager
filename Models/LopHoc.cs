@@ -11,7 +11,7 @@ namespace API_Students_Manager.Models
         [Key]
         public Guid ClassID { get; set; }
 
-        public string SubjectID { get; set; }
+        public Guid CourseID { get; set; }
 
         public string ClassName { get; set; }
 
@@ -27,6 +27,7 @@ namespace API_Students_Manager.Models
 
         public string DaysOfWeek { get; set; }
         public int StudentCount {  get; set; }
+        public int? Status { get; set; }
 
 
     }

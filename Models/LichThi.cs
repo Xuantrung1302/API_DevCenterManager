@@ -11,6 +11,7 @@ namespace API_Technology_Students_Manages.Models
         [Key]
         public Guid ExamID { get; set; }
         public Guid ClassID { get; set; }
+        public string SubjectID { get; set; }
         public string ExamName { get; set; }
         public string ExamType { get; set; }
         public DateTime ExamDateStart { get; set; }

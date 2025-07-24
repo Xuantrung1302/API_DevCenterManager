@@ -20,13 +20,13 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("danhSachDiemDanh")]
-        public object DanhSachDiemDanh(string semesterID = null, string subjectID = null, string classID = null)
+        public object DanhSachDiemDanh(string semesterID = null, string courseID = null, string classID = null)
         {
             object record = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
                 new SqlParameter("@SemesterID", semesterID),
-                new SqlParameter("@SubjectID", subjectID),
+                new SqlParameter("@CourseID", courseID),
                 new SqlParameter("@ClassID", classID)
             };
 
