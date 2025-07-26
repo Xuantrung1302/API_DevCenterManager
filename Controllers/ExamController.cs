@@ -161,6 +161,25 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_EXAM_RESULT", deleteParams);
             return result;
         }
+        [HttpGet]
+        [Route("layDiemMon")]
+        public object LayDiemMon(string studentID = null, string courseID = null)
+        {
+            object ketQua = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                    new SqlParameter("@StudentID", studentID),
+                    new SqlParameter("@CourseID", courseID),
+            };
+            dt = DBConnect.ExecuteQuery("SP_GET_SUBJECT_SCORES_BY_STUDENT_AND_COURSE");
+
+            if (dt?.Rows?.Count > 0)
+            {
+                ketQua = dt;
+                return ketQua;
+            }
+            return ketQua;
+        }
         #endregion
     }
 }

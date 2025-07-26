@@ -77,7 +77,26 @@ namespace API_Technology_Students_Manages.Controllers
 
             return classList;
         }
+        [HttpGet]
+        [Route("layDanhSachCacKhoaHocDaHoc")]
+        public object LayDanhSachCacKhoaHocDaHoc(string studentID)
+        {
+            object param = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@StudentID", studentID)
+            };
 
+            dt = DBConnect.ExecuteQuery("SP_GET_COMPLETED_COURSES_BY_STUDENT", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                param = dt;
+                return param;
+            }
+
+            return param;
+        }
 
         //API Course
         /*   [HttpGet]
