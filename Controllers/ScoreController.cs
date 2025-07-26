@@ -53,5 +53,23 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return scores;
         }
+        [HttpGet]
+        [Route("diemTheoHocVien")]
+        public object DiemTheoHocVien(string StudentID = null)
+        {
+            object scores = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@StudentID", StudentID)
+            };
+            dt = DBConnect.ExecuteQuery("SP_SELECT_SCORE_OF_STUDENT", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                scores = dt;
+                return scores;
+            }
+            return scores;
+        }
     }
 }
