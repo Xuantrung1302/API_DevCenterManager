@@ -94,6 +94,25 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_EXAM_SCHEDULE", deleteParams);
             return result;
         }
+        [HttpGet]
+        [Route("layDanhSachLichThiTheoHocVien")]
+        public object LayDanhSachLichThiTheoHocVien(string courseID = null, string studentID = null)
+        {
+            object lop = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                    new SqlParameter("@CourseID", courseID),
+                    new SqlParameter("@StudentID", studentID)
+            };
+            dt = DBConnect.ExecuteQuery("SP_SELECT_EXAM_SCHEDULE_BY_STUDENT", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                lop = dt;
+                return lop;
+            }
+            return lop;
+        }
         #endregion
         #region KET QUA
         [HttpGet]
