@@ -293,7 +293,7 @@ namespace API_Technology_Students_Manages.Controllers
         }
         [HttpGet]
         [Route("layDanhSachSinhVienTheoLop")]
-        public object LayDanhSachSinhVienTheoLop(string classID, string subjectID)
+        public object LayDanhSachSinhVienTheoLop(string classID = null, string subjectID = null)
         {
             object result = new List<object>();
             DataTable dt = new DataTable();
@@ -383,7 +383,7 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@TeacherID", classID)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER_TO_CLASS", insertParams);
+            result = DBConnect.ExecuteNonQuery("SP_ASSIGN_TEACHER_TO_CLASS", insertParams);
             return result;
         }
 
