@@ -245,6 +245,29 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return result;
         }
+        [HttpGet]
+        [Route("layDanhSachLichHocTheoNguoiDung")]
+        public object GetScheduleByUser(string studentID, string teacherID = null)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] selectParams = {
+                new SqlParameter("@StudentID", studentID),
+                new SqlParameter("@TeacherID", teacherID),
+                //new SqlParameter("@SemesterID", semesterID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_CLASS_SCHEDULE_BY_USER", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+                return result;
+            }
+            return result;
+        }
+
 
         [HttpGet]
         [Route("getScheduleByUsername")]
