@@ -100,5 +100,25 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_STUDENT", deleteParams);
             return result;
         }
+        [HttpGet]
+        [Route("thongTinHocVienCuaLop")]
+        public object DanhSachHocViènCuaLop(string classID)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@ClassID", classID),
+
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_STUDENTS_BY_ONLY_CLASS", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+                return result;
+            }
+            return result;
+        }
     }
 }
