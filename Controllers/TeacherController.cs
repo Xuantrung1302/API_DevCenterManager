@@ -18,23 +18,27 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinGiangVien")]
-        public object DanhSachGiangVien(string teacherID = null, string fullName = null)
+        public IHttpActionResult DanhSachGiangVien(string search = null, int pageIndex = 1, int pageSize = 30)
         {
-            object teachers = new List<object>();
-            DataTable dt = new DataTable();
-            SqlParameter[] selectParams = {
-                new SqlParameter("@TeacherID", teacherID),
-                new SqlParameter("@FullName", fullName)
+            var parameters = new[]
+            {
+                new SqlParameter("@Search", SqlDbType.NVarChar) { Value = (object)search ?? DBNull.Value },
+                new SqlParameter("@PageIndex", SqlDbType.Int) { Value = pageIndex },
+                new SqlParameter("@PageSize", SqlDbType.Int) { Value = pageSize },
             };
 
-            dt = DBConnect.ExecuteQuery("SP_SELECT_TEACHER", selectParams);
+            var ds = DBConnect.ExecuteDataset("SP_SELECT_TEACHER", parameters);
+            if (ds == null || ds.Tables.Count < 2)
+                return Ok(new { totalCount = 0, data = new List<object>() });
 
-            if (dt?.Rows?.Count > 0)
+            int totalCount = Convert.ToInt32(ds.Tables[0].Rows[0]["TotalCount"]);
+            var data = ds.Tables[1];
+
+            return Ok(new
             {
-                teachers = dt;
-                return teachers;
-            }
-            return teachers;
+                TotalCount = totalCount,
+                Data = data
+            });
         }
 
         [HttpPost]
@@ -107,6 +111,26 @@ namespace API_Technology_Students_Manages.Controllers
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS_BY_TEACHER", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                listClass = dt;
+                return listClass;
+            }
+            return listClass;
+        }
+
+        [HttpGet]
+        [Route("thongTinGiangDay")]
+        public object ThongTinGiangDay(string teacherID)
+        {
+            object listClass = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@TeacherID", teacherID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS_SCHEDULE_BY_TEACHER", selectParams);
 
             if (dt?.Rows?.Count > 0)
             {
