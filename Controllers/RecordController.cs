@@ -40,6 +40,26 @@ namespace API_Technology_Students_Manages.Controllers
             return record;
         }
 
+        [HttpGet]
+        [Route("danhSachDiemDanh")]
+        public object DanhSachDiemDanh(string scheduleID)
+        {
+            object record = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@ScheduleID", scheduleID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_STUDENT_BY_SHCHEDULE", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                record = dt;
+                return record;
+            }
+            return record;
+        }
+
         [HttpPost]
         [Route("themThongTinDiemDanh")]
         public bool ThemThongTinDiemDanh([FromBody] DiemDanh data)
@@ -55,23 +75,23 @@ namespace API_Technology_Students_Manages.Controllers
             return result;
         }
 
-        [HttpPost]
-        [Route("suaThongTinDiemDanh")]
-        public bool DoiThongTinDiemDanh([FromBody] DiemDanh data)
-        {
-            bool result = false;
-            string json = JsonConvert.SerializeObject(data);
+        //[HttpPost]
+        //[Route("suaThongTinDiemDanh")]
+        //public bool DoiThongTinDiemDanh([FromBody] DiemDanh data)
+        //{
+        //    bool result = false;
+        //    string json = JsonConvert.SerializeObject(data);
 
-            SqlParameter[] updateParam = {
-                new SqlParameter("@AttendanceID", data.AttendanceID),
-                new SqlParameter("@Status", data.Status),
-                new SqlParameter("@RecordedBy", data.RecordedBy),
-                new SqlParameter("@Notes", data.Notes)
-            };
+        //    SqlParameter[] updateParam = {
+        //        new SqlParameter("@AttendanceID", data.AttendanceID),
+        //        new SqlParameter("@Status", data.Status),
+        //        new SqlParameter("@RecordedBy", data.RecordedBy),
+        //        new SqlParameter("@Notes", data.Notes)
+        //    };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_ATTENDANCE_RECORD", updateParam);
-            return result;
-        }
+        //    result = DBConnect.ExecuteNonQuery("SP_UPDATE_ATTENDANCE_RECORD", updateParam);
+        //    return result;
+        //}
         [HttpPost]
         [Route("xoaThongTinDiemDanh")]
         public bool XoaThongTinDiemDanh(string attendanceID)

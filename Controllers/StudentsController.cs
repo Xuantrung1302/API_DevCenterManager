@@ -16,28 +16,48 @@ namespace API_Technology_Students_Manages.Controllers
     {
         DBConnect DBConnect = new DBConnect();
 
+        //[HttpGet]
+        //[Route("thongTinHocVien")]
+        //public object DanhSachHocVien()
+        //{
+        //    object students = new List<object>();
+        //    DataTable dt = new DataTable();
+        //    SqlParameter[] searchParams = {
+        //    };
+        //    dt = DBConnect.ExecuteQuery("SP_SELECT_STUDENT", searchParams);
+
+        //    if (dt?.Rows?.Count > 0)
+        //    {
+        //        students = dt;
+        //        return students;
+        //    }
+        //    return students;
+        //}
         [HttpGet]
         [Route("thongTinHocVien")]
-        public object DanhSachHocVien(string studentID = null, string fullName = null, string gender = null, DateTime? enrollmentDateStart = null, DateTime? enrollmentDateEnd = null)
+        public IHttpActionResult DanhSachHocVien(string search = null, int pageIndex = 1, int pageSize = 30)
         {
-            object students = new List<object>();
-            DataTable dt = new DataTable();
-            SqlParameter[] searchParams = {
-                new SqlParameter("@StudentID", studentID),
-                new SqlParameter("@FullName", fullName),
-                new SqlParameter("@EnrollmentDateStart", enrollmentDateStart),
-                new SqlParameter("@EnrollmentDateEnd", enrollmentDateEnd),
-                new SqlParameter("@Gender", gender)
-            };
-            dt = DBConnect.ExecuteQuery("SP_SELECT_STUDENT", searchParams);
-
-            if (dt?.Rows?.Count > 0)
+            var parameters = new[]
             {
-                students = dt;
-                return students;
-            }
-            return students;
+                new SqlParameter("@Search", SqlDbType.NVarChar) { Value = search ?? (object)DBNull.Value },
+                new SqlParameter("@PageIndex", SqlDbType.Int) { Value = pageIndex },
+                new SqlParameter("@PageSize", SqlDbType.Int) { Value = pageSize },
+            };
+
+            var ds = DBConnect.ExecuteDataset("SP_SELECT_STUDENT", parameters);
+            if (ds == null || ds.Tables.Count < 2)
+                return Ok(new { totalCount = 0, data = new List<object>() });
+
+            int totalCount = Convert.ToInt32(ds.Tables[0].Rows[0]["TotalCount"]);
+            var data = ds.Tables[1];
+
+            return Ok(new
+            {
+                TotalCount = totalCount,
+                Data = data
+            });
         }
+
 
         [HttpPost]
         [Route("themThongTinHocVien")]

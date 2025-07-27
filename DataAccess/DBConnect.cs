@@ -74,6 +74,29 @@ namespace API_Technology_Students_Manages.DataAccess
             return dataTable;
         }
 
+        public DataSet ExecuteDataset(string procedureName, SqlParameter[] parameters = null)
+        {
+            var dataSet = new DataSet();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                using (var command = new SqlCommand(procedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    if (parameters != null)
+                        command.Parameters.AddRange(parameters);
+
+                    using (var adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataSet);
+                    }
+                }
+            }
+
+            return dataSet;
+        }
+
+
         public int ExecuteDeleteProc(string procedureName, SqlParameter[] parameters = null)
         {
             int result = 0;
