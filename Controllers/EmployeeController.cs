@@ -17,25 +17,29 @@ namespace API_Technology_Students_Manages.Controllers
 
         [HttpGet]
         [Route("thongTinNhanVien")]
-        public object DanhSachNhanVien(string employeeID = null, string fullName = null, string gender = null)
+        public IHttpActionResult DanhSachNhanVien(string search = null, int pageIndex = 1, int pageSize = 30)
         {
-            object employees = new List<object>();
-            DataTable dt = new DataTable();
-            SqlParameter[] selectParams = {
-                new SqlParameter("@EmployeeID", employeeID),
-                new SqlParameter("@FullName", fullName),
-                new SqlParameter("@Gender", gender)
+            var parameters = new[]
+            {
+                new SqlParameter("@Search", SqlDbType.NVarChar) { Value = search ?? (object)DBNull.Value },
+                new SqlParameter("@PageIndex", SqlDbType.Int) { Value = pageIndex },
+                new SqlParameter("@PageSize", SqlDbType.Int) { Value = pageSize },
             };
 
-            dt = DBConnect.ExecuteQuery("SP_SELECT_EMPLOYEE", selectParams);
+            var ds = DBConnect.ExecuteDataset("SP_SELECT_EMPLOYEE", parameters);
+            if (ds == null || ds.Tables.Count < 2)
+                return Ok(new { totalCount = 0, data = new List<object>() });
 
-            if (dt?.Rows?.Count > 0)
+            int totalCount = Convert.ToInt32(ds.Tables[0].Rows[0]["TotalCount"]);
+            var data = ds.Tables[1];
+
+            return Ok(new
             {
-                employees = dt;
-                return employees;
-            }
-            return employees;
+                TotalCount = totalCount,
+                Data = data
+            });
         }
+
 
         [HttpPost]
         [Route("themThongTinNhanVien")]
@@ -50,7 +54,6 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Gender", data.Gender),
                 new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@Status", data.Status),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
             };
@@ -72,7 +75,6 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Gender", data.Gender),
                 new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
-                new SqlParameter("@Status", data.Status),
                 new SqlParameter("@Username", data.Username),
                 new SqlParameter("@Password", data.Password)
             };
