@@ -99,7 +99,7 @@ namespace API_Technology_Students_Manages.Controllers
                         UpdateInvoiceStatus(invoiceId, "Đã thanh toán");
                     }
                     string invoiceIdsParam = string.Join(",", invoiceIds);
-                    return Redirect($"http://localhost:3000/payment-success/{studentId}?invoiceIds={invoiceIdsParam}");
+                    return Redirect($"http://localhost:3000/payment-success?studentId={studentId}&invoiceIds={invoiceIdsParam}");
                 }
                 else
                 {
