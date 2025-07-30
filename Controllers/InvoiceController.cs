@@ -105,18 +105,19 @@ namespace API_Technology_Students_Manages.Controllers
         */
           }
 
-        // Model cho POST Update
-        public class InvoiceModel
+    // Model cho POST Update
+    public class InvoiceModel
     {
-        public List<string> InvoiceID { get; set; }
+        public List<string> InvoiceID { get; set; } 
         public string StudentID { get; set; }
-        public string SemesterID { get; set; }
         public DateTime? InvoiceDate { get; set; }
-        public DateTime? DueDate { get; set; }
+        public DateTime DueDate { get; set; }
         public decimal Amount { get; set; }
         public bool? DeleteFlg { get; set; }
         public string Status { get; set; }
+        public Guid? CourseID { get; set; }
     }
+
 
     // Model cho POST CalculateTuition
     public class TuitionModel
