@@ -35,6 +35,28 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return lop;
         }
+
+
+        [HttpGet]
+        [Route("layThongTinLopTheoMaLop")]
+        public object LayThongTinLop(string classID = null)
+        {
+            object lop = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                            new SqlParameter("@ClassID", classID),
+                    };
+            dt = DBConnect.ExecuteQuery("SP_SELECT_CLASS_BY_ID_CLASS", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                lop = dt;
+                return lop;
+            }
+            return lop;
+        }
+
+
         /*        [HttpGet]
                 [Route("layDiemLop")]
                 public object LayDiemLop(string maLop = null)
