@@ -119,6 +119,28 @@ namespace API_Technology_Students_Manages.Controllers
             return courseDetail;
         }
 
+        [HttpGet]
+        [Route("layKhoaHocTheoHocVienForLichThi")]
+        public object LayKhoaHocTheoHocVienLichThi(string studentID)
+        {
+            object courseDetail = new List<object>();
+            DataTable dt = new DataTable();
+
+            SqlParameter[] selectparams = {
+                  new SqlParameter("@StudentID", studentID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_COURSES_BY_STUDENT_EXAM", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                courseDetail = dt;
+                return courseDetail;
+            }
+
+            return courseDetail;
+        }
+
         //API Course
         /*   [HttpGet]
            [Route("thongTinKhoaHoc")]
