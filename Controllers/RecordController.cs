@@ -19,13 +19,13 @@ namespace API_Technology_Students_Manages.Controllers
         DBConnect DBConnect = new DBConnect();
 
         [HttpGet]
-        [Route("danhSachDiemDanh")]
-        public object DanhSachDiemDanh(string semesterID = null, string courseID = null, string classID = null)
+        [Route("baoCaodanhSachDiemDanh")]
+        public object DanhSachDiemDanh(string courseID = null, string classID = null, string subjectID = null)
         {
             object record = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
-                new SqlParameter("@SemesterID", semesterID),
+                new SqlParameter("@SubjectID", subjectID),
                 new SqlParameter("@CourseID", courseID),
                 new SqlParameter("@ClassID", classID)
             };

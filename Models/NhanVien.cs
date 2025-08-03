@@ -16,6 +16,7 @@ namespace API_Students_Manager.Models
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public decimal Salary { get; set; }
     }
 
 }

@@ -45,8 +45,6 @@ namespace API_Technology_Students_Manages.Controllers
         [Route("themThongTinGiangVien")]
         public bool ThemThongTinGiangVien([FromBody] GiangVien giangVien)
         {
-            bool result = false;
-
             SqlParameter[] parameters = {
                 new SqlParameter("@TeacherID", giangVien.TeacherID),
                 new SqlParameter("@FullName", giangVien.FullName),
@@ -56,19 +54,17 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Email", giangVien.Email),
                 new SqlParameter("@Degree", giangVien.Degree),
                 new SqlParameter("@Username", giangVien.Username),
-                new SqlParameter("@Password", giangVien.Password)
+                new SqlParameter("@Password", giangVien.Password),
+                new SqlParameter("@Salary", giangVien.Salary)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER", parameters);
-            return result;
+            return DBConnect.ExecuteNonQuery("SP_INSERT_TEACHER", parameters);
         }
 
         [HttpPost]
         [Route("suaThongTinGiangVien")]
         public bool DoiThongTinGiangVien([FromBody] GiangVien giangVien)
         {
-            bool result = false;
-
             SqlParameter[] updateParam = {
                 new SqlParameter("@TeacherID", giangVien.TeacherID),
                 new SqlParameter("@FullName", giangVien.FullName),
@@ -78,12 +74,13 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Email", giangVien.Email),
                 new SqlParameter("@Degree", giangVien.Degree),
                 new SqlParameter("@Username", giangVien.Username),
-                new SqlParameter("@Password", giangVien.Password)
+                new SqlParameter("@Password", giangVien.Password),
+                new SqlParameter("@Salary", giangVien.Salary)
             };
 
-            result = DBConnect.ExecuteNonQuery("SP_UPDATE_TEACHER", updateParam);
-            return result;
+            return DBConnect.ExecuteNonQuery("SP_UPDATE_TEACHER", updateParam);
         }
+
 
         [HttpPost]
         [Route("xoaThongTinGiangVien")]
@@ -138,6 +135,49 @@ namespace API_Technology_Students_Manages.Controllers
                 return listClass;
             }
             return listClass;
+        }
+
+        [HttpGet]
+        [Route("danhSachGVHours")]
+        public object DanhSachGVHours(int month, int year)
+        {
+            object listTeacher = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_TEACHERS_BY_MONTH_YEAR", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                listTeacher = dt;
+                return listTeacher;
+            }
+            return listTeacher;
+        }
+
+        [HttpGet]
+        [Route("tongSoGioDayCuaGiangVienTheoThang")]
+        public object TongSoGioDayCuaGiangVienTheoThang(string teacherID, int month, int year)
+        {
+            object listHours = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@TeacherID", teacherID),
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_PAYROLL", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                listHours = dt;
+                return listHours;
+            }
+            return listHours;
         }
     }
 }
