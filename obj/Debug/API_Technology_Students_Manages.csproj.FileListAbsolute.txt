@@ -283,3 +283,33 @@ D:\Khóa luận tốt nghiệp\API_DevCenterManager\bin\System.Runtime.CompilerS
 D:\Khóa luận tốt nghiệp\API_DevCenterManager\bin\System.Threading.Tasks.Extensions.xml
 D:\Khóa luận tốt nghiệp\API_DevCenterManager\bin\System.Web.Http.Cors.xml
 D:\Khóa luận tốt nghiệp\API_DevCenterManager\bin\QRCoder.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Newtonsoft.Json.Bson.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\QRCoder.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Buffers.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Memory.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Numerics.Vectors.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Runtime.CompilerServices.Unsafe.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Threading.Tasks.Extensions.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Web.Cors.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Web.Http.Cors.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Newtonsoft.Json.Bson.pdb
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Newtonsoft.Json.Bson.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Buffers.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Memory.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Numerics.Vectors.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Runtime.CompilerServices.Unsafe.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Threading.Tasks.Extensions.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\System.Web.Http.Cors.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.Owin.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.Owin.Security.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Owin.dll
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.AspNet.SignalR.Core.pdb
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.Owin.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\DATN_Trung_Huy\BackEndDATN\API_DevCenterManager\bin\Microsoft.Owin.Security.xml
