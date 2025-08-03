@@ -121,9 +121,9 @@ public class MessageController : ApiController
 
 public class Message
 {
-    public int MessageID { get; set; }
-    public int SenderID { get; set; }
-    public int ReceiverID { get; set; }
+    public string MessageID { get; set; }
+    public string SenderID { get; set; }
+    public string ReceiverID { get; set; }
     public string MessageContent { get; set; }
     public DateTime? SentDateTime { get; set; }
 }
