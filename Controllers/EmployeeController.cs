@@ -77,12 +77,15 @@ namespace API_Technology_Students_Manages.Controllers
                 new SqlParameter("@Address", data.Address),
                 new SqlParameter("@Email", data.Email),
                 new SqlParameter("@Username", data.Username),
-                new SqlParameter("@Password", data.Password)
+                new SqlParameter("@Password", data.Password),
+                new SqlParameter("@Salary", data.Salary)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_UPDATE_EMPLOYEE", updateParams);
             return result;
         }
+
+
         [HttpPost]
         [Route("xoaThongTinNhanVien")]
         public bool XoaThongTinNhanVien(string employeeID, string username = null)
