@@ -39,6 +39,21 @@ namespace API_Technology_Students_Manages.Controllers
             return account;
         }
 
+        [HttpPost]
+        [Route("payroll/addWorkDay")]
+        public bool AddWorkDay(string employeeId)
+        {
+            DBConnect db = new DBConnect();
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@EmployeeID", employeeId),
+                new SqlParameter("@RecordDate", DateTime.Today)
+            };
+
+            return db.ExecuteNonQuery("SP_INSERT_WORKDAY", parameters);
+        }
+
         [HttpGet]
         [Route("taoIdTuDong")]
         public string TaoIDTuDong(string ngay, string prefix)
