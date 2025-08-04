@@ -84,7 +84,24 @@ namespace API_Technology_Students_Manages.Controllers
             result = DBConnect.ExecuteNonQuery("SP_DELETE_INVOICE", deleteParams);
             return result;
         }
+        [HttpGet]
+        [Route("kiemTraMaSinhVienTrongHoaDon")]
+        public object KiemTraMaSinhVienTrongHoaDon(string studentId)
+        {
+            SqlParameter[] param = {
+        new SqlParameter("@StudentID", (object)studentId ?? DBNull.Value)
+         };
 
+            DataTable dt = DBConnect.ExecuteQuery("SP_CHECK_STUDENT_IN_INVOICE", param);
+
+            bool exists = false;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                exists = Convert.ToInt32(dt.Rows[0]["Exists"]) == 1;
+            }
+
+            return new { exists };
+        }
         // POST: api/Invoice/CalculateTuition
         /*      [HttpPost]
               [Route("CalculateTuition")]
@@ -103,7 +120,7 @@ namespace API_Technology_Students_Manages.Controllers
                   return result;
               }
         */
-          }
+    }
 
     // Model cho POST Update
     public class InvoiceModel
