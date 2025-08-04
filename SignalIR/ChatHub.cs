@@ -5,10 +5,20 @@ namespace API_Technology_Students_Manages.SignalIR
 {
     public class ChatHub : Hub
     {
+        public override Task OnConnected()
+        {
+            string userId = Context.QueryString["userId"];
+            if (!string.IsNullOrEmpty(userId))
+            {
+                Groups.Add(Context.ConnectionId, userId);
+            }
+            return base.OnConnected();
+        }
+
         public void SendMessage(Message message)
         {
-            // Gửi tin nhắn đến người nhận cụ thể
-            Clients.User(message.ReceiverID.ToString()).receiveMessage(message);
+            Clients.Group(message.ReceiverID).receiveMessage(message);
         }
     }
+
 }

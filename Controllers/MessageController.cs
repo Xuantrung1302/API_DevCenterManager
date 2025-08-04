@@ -31,7 +31,7 @@ public class MessageController : ApiController
         if (result)
         {
             // Gửi tin nhắn qua SignalR đến receiver
-            chatHub.Clients.User(message.ReceiverID.ToString()).receiveMessage(message);
+            chatHub.Clients.Group(message.ReceiverID).receiveMessage(message);
         }
 
         return result;
