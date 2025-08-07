@@ -172,5 +172,54 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return account;
         }
+
+        [HttpGet]
+        [Route("danhSachTaiKhoan")]
+        public IHttpActionResult GetAllAccount(string search = null, string role = null, int pageIndex = 1, int pageSize = 30)
+        {
+            var parameters = new[]
+            {
+                new SqlParameter("@Search", SqlDbType.NVarChar) { Value = search ?? (object)DBNull.Value },
+                new SqlParameter("@Role", SqlDbType.NVarChar) { Value = role ?? (object)DBNull.Value },
+                new SqlParameter("@PageIndex", SqlDbType.Int) { Value = pageIndex },
+                new SqlParameter("@PageSize", SqlDbType.Int) { Value = pageSize },
+            };
+
+            var ds = DBConnect.ExecuteDataset("SP_SELECT_ALL_ACCOUNT", parameters);
+            if (ds == null || ds.Tables.Count < 2)
+                return Ok(new { totalCount = 0, data = new List<object>() });
+
+            int totalCount = Convert.ToInt32(ds.Tables[0].Rows[0]["TotalCount"]);
+            var data = ds.Tables[1];
+
+            return Ok(new
+            {
+                TotalCount = totalCount,
+                Data = data
+            });
+        }
+
+        [HttpPost]
+        [Route("resetPassword")]
+        public IHttpActionResult ResetPassword([FromBody] ResetPasswordRequest req)
+        {
+            if (string.IsNullOrEmpty(req.Username) || string.IsNullOrEmpty(req.NewPassword))
+                return BadRequest("Thiếu thông tin");
+
+            var parameters = new[]
+            {
+                new SqlParameter("@Username", SqlDbType.VarChar) { Value = req.Username },
+                new SqlParameter("@NewPassword", SqlDbType.VarChar) { Value = req.NewPassword }
+            };
+
+            bool result = DBConnect.ExecuteNonQuery("SP_RESET_PASSWORD", parameters);
+            return Ok(new { Success = result });
+        }
+    }
+
+    public class ResetPasswordRequest
+    {
+        public string Username { get; set; }
+        public string NewPassword { get; set; }
     }
 }
