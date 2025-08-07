@@ -140,5 +140,26 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return result;
         }
+
+        [HttpGet]
+        [Route("danhSachHocVienCoHocPhi")]
+        public object DanhSachHocVienCoHocPhi(string StudentID = null)
+        {
+            object result = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@StudentID", StudentID),
+
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_GET_STUDENTS_FOR_INVOICE", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                result = dt;
+                return result;
+            }
+            return result;
+        }
     }
 }
