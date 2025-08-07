@@ -215,6 +215,26 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = DBConnect.ExecuteNonQuery("SP_RESET_PASSWORD", parameters);
             return Ok(new { Success = result });
         }
+
+        [HttpGet]
+        [Route("layMatKhauTaiKhoan")]
+        public object DanhSachTaiKhoan(string userName = null)
+        {
+            object account = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Username", userName)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_PASSWORD_ACCOUNT", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                account = dt;
+                return account;
+            }
+            return account;
+        }
     }
 
     public class ResetPasswordRequest
