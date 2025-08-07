@@ -172,5 +172,25 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return account;
         }
+
+        [HttpGet]
+        [Route("layMatKhauTaiKhoan")]
+        public object DanhSachTaiKhoan(string userName = null)
+        {
+            object account = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectParams = {
+                new SqlParameter("@Username", userName)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_PASSWORD_ACCOUNT", selectParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                account = dt;
+                return account;
+            }
+            return account;
+        }
     }
 }
