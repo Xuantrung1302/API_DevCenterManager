@@ -401,15 +401,34 @@ namespace API_Technology_Students_Manages.Controllers
             bool result = false;
 
             SqlParameter[] insertParams = {
-                new SqlParameter("@ClassID", teacherID),
-                new SqlParameter("@TeacherID", classID)
+                new SqlParameter("@ClassID", classID),
+                new SqlParameter("@TeacherID", teacherID)
             };
 
             result = DBConnect.ExecuteNonQuery("SP_ASSIGN_TEACHER_TO_CLASS", insertParams);
             return result;
         }
 
+        [HttpGet]
+        [Route("layThongTinHocVienChoEmail")]
+        public object LayThongTinHocVienChoEmail(string classID)
+        {
+            object teachers = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] selectparams = {
+                 new SqlParameter("@ClassID", classID)
+            };
 
+            dt = DBConnect.ExecuteQuery("SP_INFOR_STUDENT_PRINT_EMAIL", selectparams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                teachers = dt;
+                return teachers;
+            }
+
+            return teachers;
+        }
 
     }
 }
