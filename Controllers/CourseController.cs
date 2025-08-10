@@ -8,6 +8,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Windows.Input;
+using API_Technology_Students_Manages.Models;
 
 namespace API_Technology_Students_Manages.Controllers
 {
@@ -140,80 +142,53 @@ namespace API_Technology_Students_Manages.Controllers
 
             return courseDetail;
         }
+        [HttpPost]
+        [Route("themKhoaHoc")]
+        public bool ThemKhoaHoc([FromBody] List<Course> data)
+        {
+            bool result = true;
 
-        //API Course
-        /*   [HttpGet]
-           [Route("thongTinKhoaHoc")]
-           public object DanhSachKhoaHoc()
-           {
-               object khoaHoc = new List<object>();
-               DataTable dt = new DataTable();
+            foreach (var course in data)
+            {
+                // Tạo bảng tạm cho Subjects
+                DataTable subjectsTable = new DataTable();
+                subjectsTable.Columns.Add("SubjectID", typeof(string));
+                subjectsTable.Columns.Add("SubjectName", typeof(string));
+                subjectsTable.Columns.Add("TuitionFee", typeof(decimal));
+                subjectsTable.Columns.Add("SemesterID", typeof(string));
 
-               dt = DBConnect.ExecuteQuery("SP_SELECT_SEARCH_COURSE");
+                // Thêm các môn học của kỳ 1
+                foreach (var subject in course.Semester1.Subjects)
+                {
+                    subjectsTable.Rows.Add(subject.SubjectID, subject.SubjectName, subject.TuitionFee, course.Semester1.SemesterID);
+                }
 
-               if (dt?.Rows?.Count > 0)
-               {
-                   khoaHoc = dt;
-                   return khoaHoc;
-               }
-               return khoaHoc;
-           }
-           [HttpPost]
-           [Route("themThongTinKhoaHoc")]
-           public bool ThemThongTinKhoaHoc([FromBody] KhoaHoc data)
-           {
-               bool result = false;
+                // Thêm các môn học của kỳ 2
+                foreach (var subject in course.Semester2.Subjects)
+                {
+                    subjectsTable.Rows.Add(subject.SubjectID, subject.SubjectName, subject.TuitionFee, course.Semester2.SemesterID);
+                }
 
-               SqlParameter[] insertparams = {
-                       new SqlParameter("@MaKH", data.MaKH),
-                       new SqlParameter("@TenKH", data.TenKH),
-                       new SqlParameter("@HocPhi", data.HocPhi),
-                       new SqlParameter("@HeSoLyThuyet", data.HeSoLyThuyet),
-                       new SqlParameter("@HeSoThucHanh", data.HeSoThucHanh),
-                       new SqlParameter("@HeSoDuAn", data.HeSoDuAn),
-                       new SqlParameter("@HeSoCuoiKy", data.HeSoCuoiKy),
-               };
+                SqlParameter[] insertParams = {
+                    new SqlParameter("@CourseCode", course.CourseCode),
+                    new SqlParameter("@CourseName", course.CourseName),
+                    new SqlParameter("@IsActive", course.IsActive),
+                    new SqlParameter("@Semester1ID", course.Semester1.SemesterID),
+                    new SqlParameter("@Semester1Name", course.Semester1.SemesterName),
+                    new SqlParameter("@Semester1StartDate", course.Semester1.StartDate),
+                    new SqlParameter("@Semester1EndDate", course.Semester1.EndDate),
+                    new SqlParameter("@Semester2ID", course.Semester2.SemesterID),
+                    new SqlParameter("@Semester2Name", course.Semester2.SemesterName),
+                    new SqlParameter("@Semester2StartDate", course.Semester2.StartDate),
+                    new SqlParameter("@Semester2EndDate", course.Semester2.EndDate),
+                    new SqlParameter("@Subjects", subjectsTable) { SqlDbType = SqlDbType.Structured, TypeName = "dbo.SubjectType" }
+                };
 
-               result = DBConnect.ExecuteNonQuery("SP_INSERT_COURSE", insertparams);
+                result &= DBConnect.ExecuteNonQuery("SP_INSERT_COURSE_WITH_SEMESTERS_SUBJECTS", insertParams);
+            }
 
-               return result;
-           }
-           [HttpPost]
-           [Route("suaThongTinKhoaHoc")]
-           public bool DoiThongTinKhoaHoc([FromBody] KhoaHoc data)
-           {
-               bool result = false;
+            return result;
+        }
 
-               SqlParameter[] updateparams = {
-                       new SqlParameter("@MaKH", data.MaKH),
-                       new SqlParameter("@TenKH", data.TenKH),
-                       new SqlParameter("@HocPhi", data.HocPhi),
-                       new SqlParameter("@HeSoLyThuyet", data.HeSoLyThuyet),
-                       new SqlParameter("@HeSoThucHanh", data.HeSoThucHanh),
-                       new SqlParameter("@HeSoDuAn", data.HeSoDuAn),
-                       new SqlParameter("@HeSoCuoiKy", data.HeSoCuoiKy),
-               };
-
-               result = DBConnect.ExecuteNonQuery("SP_UPDATE_COURSE", updateparams);
-
-               return result;
-           }*/
-
-        //[HttpPost]
-        //[Route("xoaThongTinHocVien")]
-        //public bool XoaThongTinHocVien(string maHV, string maLoaiHV, string tenDangNhap = null)
-        //{
-        //    bool result = false;
-
-        //    SqlParameter[] deleteparams = {
-        //            new SqlParameter("@MaHV", maHV),
-        //            new SqlParameter("@TenDangNhap", tenDangNhap),
-        //            new SqlParameter("@MaLoaiHV", maLoaiHV)
-        //    };
-
-        //    result = DBConnect.ExecuteNonQuery("SP_DELETE_STUDENTS", deleteparams);
-
-        //    return result;
-        //}
     }
 }

@@ -136,18 +136,23 @@ namespace API_Technology_Students_Manages.Controllers
         }
         [HttpPost]
         [Route("themKetQua")]
-        public bool ThemKetQua([FromBody] KetQua data)
+        public bool ThemKetQua([FromBody] List<KetQua> data)
         {
-            bool result = false;
+            if (data == null || data.Count == 0)
+                return false;
+
+            // Convert list sang JSON
             string json = JsonConvert.SerializeObject(data);
 
-            SqlParameter[] insertParam = {
-                new SqlParameter("@json", json)
-            };
+            // Tạo mới SqlParameter mỗi lần gọi
+            SqlParameter[] insert1Param = {
+        new SqlParameter("@json", json)
+    };
 
-            result = DBConnect.ExecuteNonQuery("SP_INSERT_EXAM_RESULT", insertParam);
-            return result;
+            return DBConnect.ExecuteNonQuery("SP_INSERT_EXAM_RESULT", insert1Param);
         }
+
+
 
         [HttpPost]
         [Route("suaThongTinKetQua")]
@@ -199,6 +204,8 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return ketQua;
         }
+
+        
         #endregion
     }
 }

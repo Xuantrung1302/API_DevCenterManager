@@ -15,5 +15,9 @@ namespace API_Technology_Students_Manages.Models
         public string EnteredBy { get; set; }
         public DateTime? GradingDate { get; set; }
         public bool? DELETE_FLG { get; set; }
+
+        public Guid ClassID { get; set; }
+        public string SubjectID { get; set; }
+
     }
 }
