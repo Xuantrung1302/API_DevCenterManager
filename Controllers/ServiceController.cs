@@ -55,6 +55,27 @@ namespace API_Technology_Students_Manages.Controllers
         }
 
         [HttpGet]
+        [Route("thongTinCuaTacNhan")]
+        public object GetThongTinCaNhan(string ID)
+        {
+            object account = new List<object>();
+            DataTable dt = new DataTable();
+            SqlParameter[] searchParams = {
+                new SqlParameter("@ID", ID)
+            };
+
+            dt = DBConnect.ExecuteQuery("SP_SELECT_INFORMATION", searchParams);
+
+            if (dt?.Rows?.Count > 0)
+            {
+                account = dt;
+                return account;
+            }
+            return account;
+        }
+
+
+        [HttpGet]
         [Route("taoIdTuDong")]
         public string TaoIDTuDong(string ngay, string prefix)
         {
@@ -235,6 +256,8 @@ namespace API_Technology_Students_Manages.Controllers
             }
             return account;
         }
+
+
     }
 
     public class ResetPasswordRequest
