@@ -37,6 +37,31 @@ public class MessageController : ApiController
         return result;
     }
 
+
+    [HttpPost]
+    [Route("taoCuocTroChuyen")]
+    public bool TaoCuocTroChuyen([FromBody] Message message)
+    {
+        bool result = false;
+
+        SqlParameter[] parameters = {
+            new SqlParameter("@SenderID", message.SenderID),
+            new SqlParameter("@ReceiverID", message.ReceiverID),
+            new SqlParameter("@MessageContent", (object)message.MessageContent ?? DBNull.Value),
+            new SqlParameter("@SentDateTime", message.SentDateTime)
+        };
+
+        result = DBConnect.ExecuteNonQuery("SP_CreateConversation", parameters);
+
+        if (result)
+        {
+            // Gửi tin nhắn qua SignalR đến receiver
+            chatHub.Clients.Group(message.ReceiverID).receiveMessage(message);
+        }
+
+        return result;
+    }
+
     [HttpGet]
     [Route("GetMessages")]
     public object GetMessages(string senderId, string receiverId)
@@ -66,14 +91,15 @@ public class MessageController : ApiController
     }
     [HttpGet]
     [Route("GetAccountsByRole")]
-    public object GetAccountsByRole(string roleId)
+    public object GetAccountsByRole(string roleId, string CurrentUserID)
     {
         try
         {
             object lop = new List<object>();
             DataTable dt = new DataTable();
             SqlParameter[] selectParams = {
-                new SqlParameter("@RoleId", roleId)
+                new SqlParameter("@RoleId", roleId),
+                new SqlParameter("@CurrentUserID", CurrentUserID)
             };
 
             dt = DBConnect.ExecuteQuery("SP_SELECT_ACCOUNT_BY_ROLE", selectParams);
